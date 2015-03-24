@@ -1,0 +1,25 @@
+ZOModel: Zombie outbreak modeling software
+
+### Introduction
+This is a simple program I wrote to simulate a zombie outbreak over time.
+
+### Input
+ZOModel requests only a handful of parameters to track the zombie outbreak:
++Population: total world population
++Zombies: the initial number of zombies when the outbreak starts
++Win_prob: probability that a human kills a zombie one-on-one
++Eaten_prob: probability that a zombie consumes a human (i.e. no-reanimation)
++Bite_prob: probability that a "victorious" human was bitten
++Mercy_prob: probability that a bitten human is prevented from reanimating
+
+### Rules of the game:
+Each day every zombie attacks a single human one-on-one. If the zombie kills
+the human, then the human either reanimates immediately or is eaten by the
+zombie (which prevents reanimation). If the human wins, the zombie is
+eliminated. However, not all humans escape unscathed. If a human leaves the
+fight will a little less flesh, then the human will survive one more day
+before turning into a zombie. Since humans are compasionate [citation needed],
+there is a chance that the victim is mercifully prevented from reanimating
+after death.
+
+The simulation continues until either all humans or all zombies are dead.
