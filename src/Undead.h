@@ -7,7 +7,7 @@
 #                                                                            #
 ##############################################################################
 
- ZOModel is licensed under GPLv3, for more information see GPL_LICENSE
+ Data types, headers, and declarations for ZOModel.
 
 */
 
@@ -29,10 +29,34 @@
 #include <algorithm>
 using namespace std;
 
-//Function definitions
+//Custom data types
+struct ZOMSettings
+{
+  //General world statistics
+  int Pop; //Human population
+  int Zombies; //Zombie population
+  int Bitten; //Number of bitten humans
+  double Wprob; //Probability that the human kills the zombie
+  double Eprob; //Probability that the zombie eats the human
+  double Bprob; //Probability that the human was bitten
+  double Mprob; //Probability for mercy
+};
 
+struct MeatBag
+{
+  //Useless struct for humans that are not yet food
+  bool Bitten;
+};
 
-//Include other headers and cpp files
+//Function declarations
+void PrintFancyTitle();
 
+void ZOMInput(vector<MeatBag>&,ZOMSettings&);
+
+void ZOMErrorChecker(ZOMSettings&);
+
+void ZOMUpdate(vector<MeatBag>&,ZOMSettings&);
+
+void ZOMPrint(int&,ZOMSettings&);
 
 #endif
