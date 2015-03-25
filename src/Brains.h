@@ -27,7 +27,8 @@ void PrintFancyTitle()
   cout << '\n';
   cout << "#                      ";
   cout << "ZOModel: Zombie Outbreak Modeling";
-  cout << "                     #";
+  cout << "                      #";
+  cout << '\n';
   cout << "#                                      ";
   cout << "                                       #";
   cout << '\n';
@@ -190,7 +191,7 @@ void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
       randnum = (((double)rand())/((double)RAND_MAX));
       if (randnum > Plague.Mprob)
       {
-        Plague.Zombies += 1;
+        NewZombies += 1;
       }
     }
     else
