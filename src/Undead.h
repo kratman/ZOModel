@@ -40,6 +40,7 @@ struct ZOMSettings
   double Eprob; //Probability that the zombie eats the human
   double Bprob; //Probability that the human was bitten
   double Mprob; //Probability for mercy
+  double Iprob; //Initial infection rate
 };
 
 struct MeatBag

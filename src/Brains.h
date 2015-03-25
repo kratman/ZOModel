@@ -62,6 +62,9 @@ void ZOMInput(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   cout << "Mercy probability: ";
   cout << '\n';
   cin >> Plague.Mprob;
+  cout << "Percent infected: ";
+  cout << '\n';
+  cin >> Plague.Iprob;
   //Return to the simulation
   cout << '\n';
   return;
@@ -127,12 +130,21 @@ void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   cout << "Eaten probability: " << Plague.Eprob << '\n';
   cout << "Bitten probability: " << Plague.Bprob << '\n';
   cout << "Mercy probability: " << Plague.Mprob << '\n';
+  cout << "Infected probability: " << Plague.Iprob << '\n';
   cout << '\n';
   //Initialize the population as healthy humans
+  double randnum;
   for (int i=0;i<Plague.Pop;i++)
   {
     MeatBag tmp;
-    tmp.Bitten = 0;
+    //Determine if the human is infected
+    randnum = (((double)rand())/((double)RAND_MAX));
+    tmp.Bitten = 0; //Initialize as false
+    if (randnum < Plague.Iprob)
+    {
+      tmp.Bitten = 1;
+    }
+    //Add human to the population
     SurvHumans.push_back(tmp);
   }
   return;

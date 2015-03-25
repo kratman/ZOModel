@@ -7,10 +7,11 @@ This is a simple program I wrote to simulate a zombie outbreak over time.
 ZOModel requests only a handful of parameters to track the zombie outbreak:
 +Population: total world population
 +Zombies: the initial number of zombies when the outbreak starts
-+Win_prob: probability that a human kills a zombie one-on-one
-+Eaten_prob: probability that a zombie consumes a human (i.e. no-reanimation)
-+Bite_prob: probability that a "victorious" human was bitten
-+Mercy_prob: probability that a bitten human is prevented from reanimating
++Win prob: probability that a human kills a zombie one-on-one
++Eaten prob: probability that a zombie consumes a human (i.e. no-reanimation)
++Bite prob: probability that a "victorious" human was bitten
++Mercy prob: probability that a bitten human is prevented from reanimating
++Infection prob: probability that a human starts out infected
 
 ### Rules of the game:
 Each day every zombie attacks a single human one-on-one. If the zombie kills
