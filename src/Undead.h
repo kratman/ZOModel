@@ -44,7 +44,7 @@ struct ZOMSettings
 
 struct MeatBag
 {
-  //Useless struct for humans that are not yet food
+  //Useless structure for humans that are not yet food
   bool Bitten;
 };
 
