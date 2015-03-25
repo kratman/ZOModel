@@ -80,7 +80,7 @@ void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
     cout << '\n';
     DoQuit = 1;
   }
-  if (Plague.Zombies == 0)
+  if ((Plague.Zombies == 0) and (Plague.Iprob == 0))
   {
     cout << "Zero zombies? This will be quick...";
     cout << '\n';
@@ -110,7 +110,15 @@ void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   if ((Plague.Wprob > 1) or (Plague.Eprob > 1) or
      (Plague.Bprob > 1) or (Plague.Mprob > 1))
   {
-    cout << "Probabilities cannot be greater than 1!";
+    cout << "Probabilities cannot be greater than 1.";
+    cout << '\n';
+    cout << "You should take some math classes...";
+    cout << '\n';
+  }
+  if ((Plague.Wprob < 0) or (Plague.Eprob < 0) or
+     (Plague.Bprob < 0) or (Plague.Mprob < 0))
+  {
+    cout << "Probabilities cannot be less than 0.";
     cout << '\n';
     cout << "You should take some math classes...";
     cout << '\n';

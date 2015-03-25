@@ -35,7 +35,7 @@ int main()
 
   //Run simulation
   ZOMPrint(DayCount,Plague);
-  while ((Plague.Pop > 0) and (Plague.Zombies > 0))
+  while (((Plague.Pop > 0) and (Plague.Zombies > 0)) or (DayCount == 0))
   {
     DayCount += 1;
     ZOMUpdate(SurvHumans,Plague);
