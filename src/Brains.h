@@ -66,7 +66,7 @@ void ZOMInput(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   return;
 };
 
-void ZOMErrorChecker(ZOMSettings& Plague)
+void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
 {
   //Function to check for nonsensical input
   bool DoQuit = 0;
@@ -123,10 +123,17 @@ void ZOMErrorChecker(ZOMSettings& Plague)
   cout << '\n';
   cout << '\n';
   cout << "Win probability: " << Plague.Wprob << '\n';
-  cout << "Eaten probability: " << Plague.Wprob << '\n';
-  cout << "Bitten probability: " << Plague.Wprob << '\n';
-  cout << "Mercy probability: " << Plague.Wprob << '\n';
+  cout << "Eaten probability: " << Plague.Eprob << '\n';
+  cout << "Bitten probability: " << Plague.Bprob << '\n';
+  cout << "Mercy probability: " << Plague.Mprob << '\n';
   cout << '\n';
+  //Initialize the population as healthy humans
+  for (int i=0;i<Plague.Pop;i++)
+  {
+    MeatBag tmp;
+    tmp.Bitten = 0;
+    SurvHumans.push_back(tmp);
+  }
   return;
 };
 
@@ -142,14 +149,19 @@ void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   for (int z=0;z<Plague.Zombies;z++)
   {
     //Pick a random human
+    if (SurvHumans.size() == 0)
+    {
+      break;
+    }
     int h = (rand()%SurvHumans.size());
     //Check if the human loses
     randnum = (((double)rand())/((double)RAND_MAX));
     if (randnum > Plague.Wprob)
     {
       //Remove human
+      Plague.Pop -= 1;
       SurvHumans.erase(SurvHumans.begin()+h);
-      TempHumans.erase(SurvHumans.begin()+h);
+      TempHumans.erase(TempHumans.begin()+h);
       //Check for reanimation
       randnum = (((double)rand())/((double)RAND_MAX));
       if (randnum > Plague.Eprob)
@@ -198,9 +210,9 @@ void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
 void ZOMPrint(int& DayCount, ZOMSettings& Plague)
 {
   //Function to print the current progress of the outbreak
-  cout << " Day: " << DayCount;
-  cout << " Humans: " << Plague.Pop;
-  cout << " Zombies: " << Plague.Zombies;
+  cout << " | Day: " << DayCount;
+  cout << " | Humans: " << Plague.Pop;
+  cout << " | Zombies: " << Plague.Zombies;
   cout << '\n';
   return;
 };

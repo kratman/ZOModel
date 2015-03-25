@@ -53,7 +53,7 @@ void PrintFancyTitle();
 
 void ZOMInput(vector<MeatBag>&,ZOMSettings&);
 
-void ZOMErrorChecker(ZOMSettings&);
+void ZOMErrorChecker(vector<MeatBag>&,ZOMSettings&);
 
 void ZOMUpdate(vector<MeatBag>&,ZOMSettings&);
 

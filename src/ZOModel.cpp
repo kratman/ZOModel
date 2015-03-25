@@ -30,7 +30,7 @@ int main()
   //Read input and check for errors
   PrintFancyTitle();
   ZOMInput(SurvHumans,Plague);
-  ZOMErrorChecker(Plague);
+  ZOMErrorChecker(SurvHumans,Plague);
   //End of section
 
   //Run simulation
