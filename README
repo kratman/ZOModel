@@ -1,13 +1,13 @@
 ZOModel: Zombie outbreak modeling software
 
-### Introduction
+### Introduction ###
 
 This is a simple program I wrote to simulate a zombie outbreak over time.
 
 ZOModel can be compile with
 user:$ ./Compile
 
-### Input
+### Input ###
 
 ZOModel requests only a handful of parameters to track the zombie outbreak:
 +Population: total world population
@@ -18,9 +18,10 @@ ZOModel requests only a handful of parameters to track the zombie outbreak:
 +Mercy prob: probability that a bitten human is prevented from reanimating
 +Infection prob: probability that a human starts out infected
 
-### Rules of the game:
+### Rules of the game ###
 
-ZOModel assumes that humans are on the defensive while 
+ZOModel assumes that humans are on the defensive while the zombies are the
+aggressors.
 
 Each day every zombie attacks a single human one-on-one. If the zombie kills
 the human, then the human either reanimates immediately or is eaten by the
@@ -33,7 +34,7 @@ after death.
 
 The simulation continues until either all humans or all zombies are dead.
 
-### Running a simulation
+### Running a simulation ###
 
 ZOModel prompts users for input at run time. Example output is shown below.
 
