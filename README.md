@@ -26,9 +26,12 @@ To install,
 user:$ make install
 ```
 
-### ZOModel input
+### ZOModel
+
+#### Input
 
 ZOModel requests only a handful of parameters to track the zombie outbreak:
+```
 +Population: total world population
 +Zombies: the initial number of zombies when the outbreak starts
 +Win prob: probability that a human kills a zombie one-on-one
@@ -36,6 +39,7 @@ ZOModel requests only a handful of parameters to track the zombie outbreak:
 +Bite prob: probability that a "victorious" human was bitten
 +Mercy prob: probability that a bitten human is prevented from reanimating
 +Infection prob: probability that a human starts out infected
+```
 
 #### Rules of the game
 
