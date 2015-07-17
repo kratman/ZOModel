@@ -12,6 +12,8 @@
 
 |#
 
+;;; Main code ;;;
+
 ; Print blank line
 (format t "~%")
 
@@ -27,6 +29,10 @@
 
 ; Collect input variables
 (format t "Input:~%")
+(format t " Initial human population (thousands):~%")
+(setq hpop (read))
+(format t " Initial zombie population (thousands):~%")
+(setq zpop (read))
 (format t " Run time \(years\):~%")
 (setq years (read))
 (format t " Human population growth rate:~%")
@@ -48,10 +54,57 @@
 (setq merrate (/ merrate 12.0))
 (setq erorate (/ erorate 12.0))
 
-; Loop over the zombie apocalypse
+; Output simulation info
+(format t "~%")
+(format t "Simulating the human and zombie populations \(in thousands\)")
+(format t "~%")
+(format t "for the first ")
+(princ months)
+(format t " months of a zombie outbreak:")
+(format t "~%")
 
+; Loop over the zombie apocalypse
+(format t "~%")
+(format t "Month Humans Zombies")
+(format t "~%")
+(loop
+  for i from 0 to months
+  do
+    ; Print current stats
+    (format t " ")
+    (princ i)
+    (format t " ")
+    (princ hpop)
+    (format t " ")
+    (princ zpop)
+    (format t "~%")
+    ; Update human population
+    (setq newhpop hpop)
+    (setq newhpop (+ newhpop (* poprate hpop)))
+    (setq newhpop (- newhpop (* (/ poprate 10000) hpop hpop)))
+    (setq newhpop (- newhpop (* winrate zpop)))
+    (setq newhpop (- newhpop (* infrate hpop)))
+    ; Update zombie population
+    (setq newzpop zpop)
+    (if (> hpop 0.001)
+      (setq newzpop (+ newzpop (* (- 1 merrate) (* winrate zpop)))))
+    (if (> hpop 0.001)
+      (setq newzpop (+ newzpop (* (- 1 merrate) (* infrate hpop)))))
+    (setq newzpop (- newzpop (* erorate zpop)))
+    (if (> hpop 0.001)
+      (setq newzpop (- newzpop (* (- 1 winrate) zpop))))
+    ; Prevent impossible populations
+    (if (< newhpop 0.001) (setq newhpop 0))
+    (if (< newzpop 0.001) (setq newzpop 0))
+    ; Save populations
+    (setq hpop newhpop)
+    (setq zpop newzpop)
+)
 
 ; End of the world (and program)
 (format t "~%")
-(format t "The end?~%")
+(format t "The end?")
+(format t "~%")
+(if (< hpop 0.001) (format t " Yes. Everyone is dead."))
+(format t "~%")
 (format t "~%")
