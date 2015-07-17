@@ -1,14 +1,32 @@
-ZOModel: Zombie outbreak modeling software
 
-### Introduction ###
+[//]: # (Mixture of GitHub markdown and HTML. HTML is needed for formatting.)
+
+***
+<div align=center> <h2>
+ZOModel: Zombie Outbreak Modeling Software
+</h2> </div>
+
+<div align=center> <h4> By: Eric G. Kratz </h4> </div>
+
+***
+
+### Introduction
 
 This is a simple set of programs I wrote to simulate a zombie outbreak over
 time. This was just for fun and is not a realistic model. 
 
-ZOModel can be compiled with
-user:$ ./Compile
+Required packages:
+```
+ ZOModel: OpenMP
+ ZOMlog: clisp
+```
 
-### Input ###
+To install,
+```
+user:$ make install
+```
+
+### ZOModel input
 
 ZOModel requests only a handful of parameters to track the zombie outbreak:
 +Population: total world population
@@ -19,7 +37,7 @@ ZOModel requests only a handful of parameters to track the zombie outbreak:
 +Mercy prob: probability that a bitten human is prevented from reanimating
 +Infection prob: probability that a human starts out infected
 
-### Rules of the game ###
+#### Rules of the game
 
 ZOModel assumes that humans are on the defensive while the zombies are the
 aggressors.
@@ -35,11 +53,11 @@ after death.
 
 The simulation continues until either all humans or all zombies are dead.
 
-### Running a simulation ###
+#### Running a simulation
 
 ZOModel prompts users for input at run time. Example output is shown below.
 
-...
+```
 user:$ ./ZOModel
 
 ###############################################################################
@@ -56,11 +74,7 @@ Prob. that a zombie is super-hungry:
 Prob. that a human gets bitten:
 Mercy probability:
 Percent infected:
+```
 
-...
-
-The probabilities are described in the input section of the README.
-
-### ZOMlog: Zombie logistics map ###
-
+### ZOMlog: Zombie logistics map
 
