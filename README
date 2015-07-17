@@ -2,9 +2,10 @@ ZOModel: Zombie outbreak modeling software
 
 ### Introduction ###
 
-This is a simple program I wrote to simulate a zombie outbreak over time.
+This is a simple set of programs I wrote to simulate a zombie outbreak over
+time. This was just for fun and is not a realistic model. 
 
-ZOModel can be compile with
+ZOModel can be compiled with
 user:$ ./Compile
 
 ### Input ###
@@ -59,3 +60,7 @@ Percent infected:
 ...
 
 The probabilities are described in the input section of the README.
+
+### ZOMlog: Zombie logistics map ###
+
+
