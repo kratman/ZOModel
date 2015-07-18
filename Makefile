@@ -5,6 +5,8 @@
 #                                                                            #
 ##############################################################################
 
+#NB: The installer for the lisp code uses Linux shell commands (sed,chmod).
+
 ### Compiler settings
 
 CXX=g++
@@ -29,8 +31,14 @@ zombin:
 zomlog:	
 	@echo ""; \
 	echo "### Making the ZOMlog executable ###"; \
+	echo " Copy lisp code..."; \
 	cat ./src/ZOMlog.lisp > ZOMlog; \
+	echo " Set lisp interpreter..."; \
 	sed -i 's/\;CLISP/\#\!$(LISP)/g' ZOMlog; \
+	echo " Purge garbage..."; \
+	sed -i '/\;/d' ZOMlog; \
+	sed -i '/\#|/,/|\#/d' ZOMlog; \
+	sed -i '/^$$/d' ZOMlog; \
 	chmod a+x ZOMlog; \
 	echo " [Complete]"
 

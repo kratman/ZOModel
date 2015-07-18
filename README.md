@@ -15,7 +15,7 @@ ZOModel: Zombie Outbreak Modeling Software
 This is a simple set of programs I wrote to simulate a zombie outbreak over
 time. This was just for fun and is not a realistic model. 
 
-Required packages:
+Recommended packages:
 ```
  ZOModel: OpenMP
  ZOMlog: clisp
@@ -82,3 +82,39 @@ Percent infected:
 
 ### ZOMlog: Zombie logistics map
 
+#### Input
+
+ZOMlog requests only a handful of parameters to track the zombie outbreak:
+```
++hpop => Initial human population
++zpop => Initial zombie population
++years => Simulation time in years
++poprate => Yearly population growth rate
++winrate => Probability that a human beats a zombie
++infrate => Yearly infection rate
++merrate => Probability that the infected are prevented from turning
++erorate => Yearly rate of zombie destruction by natural forces
+```
+One additional parameter (compscl) is set inside the source code. This
+parameter controls the amount of human-human cooperation.
+
+The logistics map propagates the following equations:
+```
+  hpop = hpop + poprate*hpop - poprate*hpop*hpop/compscl
+         -(1-winrate)*zpop - infrate*hpop
+
+  zpop = zpop + (1-merrate)*((1-winrate)*zpop+infrate*hpop)
+         -erorate*zpop - winrate*zpop
+```
+
+Additional controls are added to avoid impossible populations and growth
+rates.
+
+#### Rules of the game
+
+While ZOModel favors the zombies by making humans defensive, ZOMlog favors
+the humans by including a population growth rate. The logistics model also
+includes human-human, human-nature, and zombie-nature interactions.
+
+Each month the populations of humans and zombies are updated and the
+simulation continues until the time runs out.
