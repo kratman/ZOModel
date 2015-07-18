@@ -38,7 +38,7 @@
 ; compscl => Sets the amount of human-human cooperation
 
 ;; Parameters
-(setq compscl 10000)
+(setq compscl 10000000)
 
 ; Print blank line
 (format t "~%")
