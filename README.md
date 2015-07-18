@@ -32,13 +32,13 @@ user:$ make install
 
 ZOModel requests only a handful of parameters to track the zombie outbreak:
 ```
-+Population: total world population
-+Zombies: the initial number of zombies when the outbreak starts
-+Win prob: probability that a human kills a zombie one-on-one
-+Eaten prob: probability that a zombie consumes a human (i.e. no-reanimation)
-+Bite prob: probability that a "victorious" human was bitten
-+Mercy prob: probability that a bitten human is prevented from reanimating
-+Infection prob: probability that a human starts out infected
+-Population: total world population
+-Zombies: the initial number of zombies when the outbreak starts
+-Win prob: probability that a human kills a zombie one-on-one
+-Eaten prob: probability that a zombie consumes a human (i.e. no-reanimation)
+-Bite prob: probability that a "victorious" human was bitten
+-Mercy prob: probability that a bitten human is prevented from reanimating
+-Infection prob: probability that a human starts out infected
 ```
 
 #### Rules of the game
@@ -57,46 +57,24 @@ after death.
 
 The simulation continues until either all humans or all zombies are dead.
 
-#### Running a simulation
-
-ZOModel prompts users for input at run time. Example output is shown below.
-
-```
-user:$ ./ZOModel
-
-###############################################################################
-#                                                                             #
-#                      ZOModel: Zombie Outbreak Modeling                      #
-#                                                                             #
-###############################################################################
-
-
-Initial population:
-Initial zombies:
-Prob. that a human will win a fight:
-Prob. that a zombie is super-hungry:
-Prob. that a human gets bitten:
-Mercy probability:
-Percent infected:
-```
-
 ### ZOMlog: Zombie logistics map
 
 #### Input
 
 ZOMlog requests only a handful of parameters to track the zombie outbreak:
 ```
-+hpop => Initial human population
-+zpop => Initial zombie population
-+years => Simulation time in years
-+poprate => Yearly population growth rate
-+winrate => Probability that a human beats a zombie
-+infrate => Yearly infection rate
-+merrate => Probability that the infected are prevented from turning
-+erorate => Yearly rate of zombie destruction by natural forces
+-hpop => Initial human population
+-zpop => Initial zombie population
+-years => Simulation time in years
+-poprate => Yearly population growth rate
+-winrate => Probability that a human beats a zombie
+-infrate => Yearly infection rate
+-merrate => Probability that the infected are prevented from turning
+-erorate => Yearly rate of zombie destruction by natural forces
 ```
 One additional parameter (compscl) is set inside the source code. This
-parameter controls the amount of human-human cooperation.
+parameter controls the amount of human-human cooperation. It is currently
+tuned to allow the world to support 10 billion humans.
 
 The logistics map propagates the following equations:
 ```
