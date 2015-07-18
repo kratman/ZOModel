@@ -47,6 +47,7 @@
 "############################################################################
 #                                                                          #
 #                     ZOModel: Zombie Outbreak Modeling                    #
+#                                                                          #
 #                            By: Eric G. Kratz                             #
 #                                                                          #
 ############################################################################
@@ -71,7 +72,7 @@
 (format t " Zombie erosion rate:~%")
 (setq erorate (read))
 
-; Check the input for errors and continue
+; Check the input against minimum values
 (if (< hpop 1) (setq hpop 0))
 (if (< zpop 1) (setq zpop 0))
 (if (< years 1) (setq years 0))
@@ -81,6 +82,8 @@
 (if (< merrate 0) (setq merrate 0))
 (if (< erorate 0) (setq erorate 0))
 (if (< compscl 1) (setq compscl 1))
+
+; Check input against maximum values
 (if (> poprate 1) (setq poprate 1))
 (if (> winrate 1) (setq winrate 1))
 (if (> infrate 1) (setq infrate 1))
@@ -93,6 +96,7 @@
 (format t "~%")
 (format t "~%")
 (format t "Simulation settings:")
+(format t "~%")
 (format t "~%")
 (format t " hpop: ")
 (princ hpop)
@@ -128,19 +132,7 @@
 (setq infrate (/ infrate 12.0))
 (setq erorate (/ erorate 12.0))
 
-; Output simulation info
-(format t "~%")
-(format t "####")
-(format t "~%")
-(format t "~%")
-(format t "Simulating the human and zombie populations \(in thousands\)")
-(format t "~%")
-(format t "for the first ")
-(princ months)
-(format t " months of a zombie outbreak:")
-(format t "~%")
-
-; Loop over the zombie apocalypse
+; Explain model
 #| Equations:
 
   h = h+poprate*h-poprate*h*h/compscl
@@ -151,10 +143,58 @@
 
 |#
 
+; Combine constants for readability (not used in the calculations)
+(setq hlinrate (- (+ 1 poprate) infrate))
+(setq hquadrate (/ poprate compscl))
+(setq hzlinrate (- 1 winrate))
+(setq zlinrate (- 1 erorate winrate))
+(setq zlinrate (+ zlinrate (* (- 1 merrate) (- 1 winrate))))
+(setq zhlinrate (* infrate (- 1 merrate)))
+
+; Print intial model
+(format t "~%")
+(format t "Approximate model:")
+(format t "~%")
+(format t "~%")
+
+; Human model
+(format t " hpop=\(")
+(princ hlinrate)
+(format t "\)*hpop-\(")
+(princ hquadrate)
+(format t "\)*hpop*hpop-\(")
+(princ hzlinrate)
+
+; Zombie model
+(format t "\)*zpop")
+(format t "~%")
+(format t "~%")
+(format t " zpop=\(")
+(princ zlinrate)
+(format t "\)*zpop+\(")
+(princ zhlinrate)
+(format t "\)*hpop")
+(format t "~%")
+(format t "~%")
+
+; Output more simulation info
+(format t "~%")
+(format t "####")
+(format t "~%")
+(format t "~%")
+(format t "Simulating the human and zombie populations \(in thousands\)")
+(format t "~%")
+(format t "for the first ")
+(princ months)
+(format t " months of a zombie outbreak.")
+(format t "~%")
+
+; Set stats counters to zero
 (setq maxh 0)
 (setq maxz 0)
 (setq extmon 0)
 
+; Loop over the zombie apocalypse
 (format t "~%")
 (format t "####")
 (format t "~%")
