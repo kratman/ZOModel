@@ -1,3 +1,4 @@
+; The line below should say CLISP and is used to place the interpreter
 ;CLISP
 #|
 
