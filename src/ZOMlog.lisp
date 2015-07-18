@@ -11,15 +11,26 @@
 
  ZOModel is licensed under GPLv3, for more information see GPL_LICENSE
 
+#|
+
+;;; Documentation ;;;
+
+#|
+
  This program simulates a zombie outbreak using two logistic map style
  equations. Humans and zombies fight each other and the natural world.
 
  In a typical logistics map the human population would be given by:
+
  h = h+poprate*h-poprate*h*h/compscl
+
  where h is the population, poprate is the population growth rate, and
  compscl is a scale factor related to the amount of human cooperation.
  A large population growth rate would push the human population into
  the chaotic regime.
+
+ Chaotic simulations are unlikely in ZOMlog due to limits on growth rates,
+ avoidance of negative populations, and the zombie-human interactions.
 
 |#
 
@@ -38,12 +49,13 @@
 ; compscl => Sets the amount of human-human cooperation
 
 ;; Parameters
+; Tuned for 10 billion humans
 (setq compscl 10000000)
 
-; Print blank line
+;; Print blank line
 (format t "~%")
 
-; Print title
+;; Print title
 (format t
 "############################################################################
 #                                                                          #
@@ -54,26 +66,48 @@
 ############################################################################
 ~%")
 
-; Collect input variables
-(format t "Input:~%")
-(format t " Initial human population (thousands):~%")
+;; Print separator
+(format t "####")
+(format t "~%")
+
+;; Collect input variables
+(format t "~%")
+(format t "Input:")
+(format t "~%")
+; Human population
+(format t " Initial human population (thousands):")
+(format t "~%")
 (setq hpop (read))
-(format t " Initial zombie population (thousands):~%")
+; Zombie population
+(format t " Initial zombie population (thousands):")
+(format t "~%")
 (setq zpop (read))
-(format t " Run time \(years\):~%")
+; Simulation time
+(format t " Run time \(years\):")
+(format t "~%")
 (setq years (read))
-(format t " Human population growth rate:~%")
+; Population growth rate
+(format t " Human population growth rate:")
+(format t "~%")
 (setq poprate (read))
-(format t " Human win rate:~%")
+; Human win rate
+(format t " Human win rate:")
+(format t "~%")
 (setq winrate (read))
-(format t " Human infection rate:~%") 
+; Viral infection rate
+(format t " Human infection rate:")
+(format t "~%")
 (setq infrate (read))
-(format t " Mercy rate:~%")
+; Mercy rate
+(format t " Mercy rate:")
+(format t "~%")
 (setq merrate (read))
-(format t " Zombie erosion rate:~%")
+; Zombie destruction rate
+(format t " Zombie erosion rate:")
+(format t "~%")
 (setq erorate (read))
 
-; Check the input against minimum values
+;; Check the input against minimum values
 (if (< hpop 1) (setq hpop 0))
 (if (< zpop 1) (setq zpop 0))
 (if (< years 1) (setq years 0))
@@ -84,14 +118,14 @@
 (if (< erorate 0) (setq erorate 0))
 (if (< compscl 1) (setq compscl 1))
 
-; Check input against maximum values
+;; Check input against maximum values
 (if (> poprate 1) (setq poprate 1))
 (if (> winrate 1) (setq winrate 1))
 (if (> infrate 1) (setq infrate 1))
 (if (> merrate 1) (setq merrate 1))
 (if (> erorate 1) (setq erorate 1))
 
-; Print settings after the sanity checks
+;; Print settings after the sanity checks
 (format t "~%")
 (format t "####")
 (format t "~%")
@@ -99,66 +133,77 @@
 (format t "Simulation settings:")
 (format t "~%")
 (format t "~%")
+; Human population
 (format t " hpop: ")
 (princ hpop)
 (format t "~%")
+; Zombie population
 (format t " zpop: ")
 (princ zpop)
 (format t "~%")
+; Simulation time
 (format t " years: ")
 (princ years)
 (format t "~%")
+; Population rate
 (format t " poprate: ")
 (princ (* 100 poprate))
 (format t "\%~%")
+; Competion scale factor
 (format t " compscl: ")
 (princ compscl)
 (format t "~%")
+; Win rate
 (format t " winrate: ")
 (princ (* 100 winrate))
 (format t "\%~%")
+; Infection rate
 (format t " infrate: ")
 (princ (* 100 infrate))
 (format t "\%~%")
+; Mercy rate
 (format t " merrate: ")
 (princ (* 100 merrate))
 (format t "\%~%")
+; Zombie destruction rate
 (format t " erorate: ")
 (princ (* 100 erorate))
 (format t "\%~%")
 
-; Switch from years to months
+;; Switch from years to months
 (setq months (* 12 years))
 (setq poprate (/ poprate 12.0))
 (setq infrate (/ infrate 12.0))
 (setq erorate (/ erorate 12.0))
 
-; Explain model
+;; Explain model
 #| Equations:
 
-  h = h+poprate*h-poprate*h*h/compscl
-      -(1-winrate)*z-infrate*h
+  hpop = hpop+poprate*hpop-poprate*hpop*hpop/compscl
+         -(1-winrate)*zpop-infrate*hpop
 
-  z = z+(1-merrate)*((1-winrate)*z+infrate*h)
-      -erorate*z-winrate*z
+  zpop = zpop+(1-merrate)*((1-winrate)*zpop+infrate*hpop)
+         -erorate*zpop-winrate*zpop
 
 |#
 
-; Combine constants for readability (not used in the calculations)
+;; Combine constants for readability (not used in the calculations)
+; Humans
 (setq hlinrate (- (+ 1 poprate) infrate))
 (setq hquadrate (/ poprate compscl))
 (setq hzlinrate (- 1 winrate))
+; Zombies
 (setq zlinrate (- 1 erorate winrate))
 (setq zlinrate (+ zlinrate (* (- 1 merrate) (- 1 winrate))))
 (setq zhlinrate (* infrate (- 1 merrate)))
 
-; Print intial model
+;; Print intial model
 (format t "~%")
 (format t "Approximate model:")
 (format t "~%")
 (format t "~%")
 
-; Human model
+;; Human model
 (format t " hpop=\(")
 (princ hlinrate)
 (format t "\)*hpop-\(")
@@ -166,7 +211,7 @@
 (format t "\)*hpop*hpop-\(")
 (princ hzlinrate)
 
-; Zombie model
+;; Zombie model
 (format t "\)*zpop")
 (format t "~%")
 (format t "~%")
@@ -178,7 +223,7 @@
 (format t "~%")
 (format t "~%")
 
-; Output more simulation info
+;; Output more simulation info
 (format t "~%")
 (format t "####")
 (format t "~%")
@@ -190,12 +235,12 @@
 (format t " months of a zombie outbreak.")
 (format t "~%")
 
-; Set stats counters to zero
+;; Set stats counters to zero
 (setq maxh 0)
 (setq maxz 0)
 (setq extmon 0)
 
-; Loop over the zombie apocalypse
+;; Loop over the zombie apocalypse
 (format t "~%")
 (format t "####")
 (format t "~%")
@@ -240,25 +285,28 @@
     (setq zpop newzpop)
 )
 
-; Print stats
+;; Print stats
 (format t "~%")
 (format t "####")
 (format t "~%")
 (format t "~%")
 (format t "Statistics:")
 (format t "~%")
+; Print human extiction date
 (format t " Humans survived for ")
 (princ extmon)
 (format t " months")
 (format t "~%")
+; Print maximum number of humans
 (format t " Largest number of humans (in thousands): ")
 (princ maxh)
 (format t "~%")
+; Print maximum number of zombies
 (format t " Largest number of Zombies (in thousands): ")
 (princ maxz)
 (format t "~%")
 
-; End of the world (and program)
+;; End of the world (and program)
 (format t "~%")
 (format t "####")
 (format t "~%")
