@@ -67,7 +67,7 @@
 
 ;; Parameters
 ; Strange number, but tuned for ~10 billion humans
-(setq compscl 10000400)
+(setf compscl 10000400)
 
 ;; Print blank line
 (format t "~%")
@@ -94,53 +94,53 @@
 ; Human population
 (format t " Initial human population (thousands):")
 (format t "~%")
-(setq hpop (read))
+(setf hpop (read))
 ; Zombie population
 (format t " Initial zombie population (thousands):")
 (format t "~%")
-(setq zpop (read))
+(setf zpop (read))
 ; Simulation time
 (format t " Run time \(years\):")
 (format t "~%")
-(setq years (read))
+(setf years (read))
 ; Population growth rate
 (format t " Human population growth rate:")
 (format t "~%")
-(setq poprate (read))
+(setf poprate (read))
 ; Human win rate
 (format t " Human win rate:")
 (format t "~%")
-(setq winrate (read))
+(setf winrate (read))
 ; Viral infection rate
 (format t " Human infection rate:")
 (format t "~%")
-(setq infrate (read))
+(setf infrate (read))
 ; Mercy rate
 (format t " Mercy rate:")
 (format t "~%")
-(setq merrate (read))
+(setf merrate (read))
 ; Zombie destruction rate
 (format t " Zombie erosion rate:")
 (format t "~%")
-(setq erorate (read))
+(setf erorate (read))
 
 ;; Check the input against minimum values
-(if (< hpop 1) (setq hpop 0))
-(if (< zpop 1) (setq zpop 0))
-(if (< years 1) (setq years 0))
-(if (< poprate 0) (setq poprate 0))
-(if (< winrate 0) (setq winrate 0))
-(if (< infrate 0) (setq infrate 0))
-(if (< merrate 0) (setq merrate 0))
-(if (< erorate 0) (setq erorate 0))
-(if (< compscl 1) (setq compscl 1))
+(if (< hpop 1) (setf hpop 0))
+(if (< zpop 1) (setf zpop 0))
+(if (< years 1) (setf years 0))
+(if (< poprate 0) (setf poprate 0))
+(if (< winrate 0) (setf winrate 0))
+(if (< infrate 0) (setf infrate 0))
+(if (< merrate 0) (setf merrate 0))
+(if (< erorate 0) (setf erorate 0))
+(if (< compscl 1) (setf compscl 1))
 
 ;; Check input against maximum values
-(if (> poprate 1) (setq poprate 1))
-(if (> winrate 1) (setq winrate 1))
-(if (> infrate 1) (setq infrate 1))
-(if (> merrate 1) (setq merrate 1))
-(if (> erorate 1) (setq erorate 1))
+(if (> poprate 1) (setf poprate 1))
+(if (> winrate 1) (setf winrate 1))
+(if (> infrate 1) (setf infrate 1))
+(if (> merrate 1) (setf merrate 1))
+(if (> erorate 1) (setf erorate 1))
 
 ;; Print settings after the sanity checks
 (format t "~%")
@@ -189,14 +189,14 @@
 
 ;; Switch from years to months
 ; Easy conversion from years to months
-(setq months (* 12 years))
+(setf months (* 12 years))
 ; Fix growth rate for exponential growth
-(setq poprate (+ 1 poprate))
-(setq poprate (expt poprate (/ 1 12.0)))
-(setq poprate (- poprate 1))
+(setf poprate (+ 1 poprate))
+(setf poprate (expt poprate (/ 1 12.0)))
+(setf poprate (- poprate 1))
 ; These are additive and should be fine
-(setq infrate (/ infrate 12.0))
-(setq erorate (/ erorate 12.0))
+(setf infrate (/ infrate 12.0))
+(setf erorate (/ erorate 12.0))
 
 ;; Explain model
 #| Equations:
@@ -211,13 +211,13 @@
 
 ;; Combine constants for readability (not used in the calculations)
 ; Humans
-(setq hlinrate (- (+ 1 poprate) infrate))
-(setq hquadrate (/ poprate compscl))
-(setq hzlinrate (- 1 winrate))
+(setf hlinrate (- (+ 1 poprate) infrate))
+(setf hquadrate (/ poprate compscl))
+(setf hzlinrate (- 1 winrate))
 ; Zombies
-(setq zlinrate (- 1 erorate winrate))
-(setq zlinrate (+ zlinrate (* (- 1 merrate) (- 1 winrate))))
-(setq zhlinrate (* infrate (- 1 merrate)))
+(setf zlinrate (- 1 erorate winrate))
+(setf zlinrate (+ zlinrate (* (- 1 merrate) (- 1 winrate))))
+(setf zhlinrate (* infrate (- 1 merrate)))
 
 ;; Print intial model
 (format t "~%")
@@ -263,9 +263,9 @@
 (format t "~%")
 
 ;; Set stats counters to zero
-(setq maxh 0)
-(setq maxz 0)
-(setq extmon 0)
+(setf maxh 0)
+(setf maxz 0)
+(setf extmon 0)
 
 ;; Loop over the zombie apocalypse
 (format t "~%")
@@ -286,30 +286,30 @@
     (princ zpop)
     (format t "~%")
     ; Collect stats
-    (if (> hpop maxh) (setq maxh hpop))
-    (if (> zpop maxz) (setq maxz zpop))
-    (if (> hpop 0) (setq extmon i))
+    (if (> hpop maxh) (setf maxh hpop))
+    (if (> zpop maxz) (setf maxz zpop))
+    (if (> hpop 0) (setf extmon i))
     ; Update human population
-    (setq newhpop hpop)
-    (setq newhpop (+ newhpop (* poprate hpop)))
-    (setq newhpop (- newhpop (* (/ poprate compscl) hpop hpop)))
-    (setq newhpop (- newhpop (* (- 1 winrate) zpop)))
-    (setq newhpop (- newhpop (* infrate hpop)))
+    (setf newhpop hpop)
+    (setf newhpop (+ newhpop (* poprate hpop)))
+    (setf newhpop (- newhpop (* (/ poprate compscl) hpop hpop)))
+    (setf newhpop (- newhpop (* (- 1 winrate) zpop)))
+    (setf newhpop (- newhpop (* infrate hpop)))
     ; Update zombie population
-    (setq newzpop zpop)
+    (setf newzpop zpop)
     (if (> hpop 0.001)
-      (setq newzpop (+ newzpop (* (- 1 merrate) (* (- 1 winrate) zpop)))))
+      (setf newzpop (+ newzpop (* (- 1 merrate) (* (- 1 winrate) zpop)))))
     (if (> hpop 0.001)
-      (setq newzpop (+ newzpop (* (- 1 merrate) (* infrate hpop)))))
-    (setq newzpop (- newzpop (* erorate zpop)))
+      (setf newzpop (+ newzpop (* (- 1 merrate) (* infrate hpop)))))
+    (setf newzpop (- newzpop (* erorate zpop)))
     (if (> hpop 0.001)
-      (setq newzpop (- newzpop (* winrate zpop))))
+      (setf newzpop (- newzpop (* winrate zpop))))
     ; Prevent impossible populations
-    (if (< newhpop 0.001) (setq newhpop 0))
-    (if (< newzpop 0.001) (setq newzpop 0))
+    (if (< newhpop 0.001) (setf newhpop 0))
+    (if (< newzpop 0.001) (setf newzpop 0))
     ; Save populations
-    (setq hpop newhpop)
-    (setq zpop newzpop)
+    (setf hpop newhpop)
+    (setf zpop newzpop)
 )
 
 ;; Print stats
