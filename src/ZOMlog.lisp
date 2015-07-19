@@ -22,15 +22,32 @@
 
  In a typical logistics map the human population would be given by:
 
- h = h+poprate*h-poprate*h*h/compscl
+ hpop = hpop + poprate*h - poprate*hpop*hpop/compscl
 
- where h is the population, poprate is the population growth rate, and
+ where hpop is the population, poprate is the population growth rate, and
  compscl is a scale factor related to the amount of human cooperation.
  A large population growth rate would push the human population into
  the chaotic regime.
 
+ The human-zombie model is given by:
+
+ hpop = hpop + poprate*hpop - poprate*hpop*hpop/compscl
+        -(1-winrate)*zpop - infrate*hpop
+
+ zpop = zpop + (1-merrate)*((1-winrate)*zpop+infrate*hpop)
+        -erorate*zpop - winrate*zpop
+
+ where zpop is the zombie population, winrate is the probability that a
+ human can beat a zombie, merrate is the probability that an infected
+ human will be prevented from reanimating, and erorate is the rate of
+ zombie population erosion from natural forces. Zombie-human interactions
+ are not calculated when there is less than 1 member of the population and
+ negative populations are set to zero.
+
  Chaotic simulations are unlikely in ZOMlog due to limits on growth rates,
  avoidance of negative populations, and the zombie-human interactions.
+ This model should be realistic for large populations, but it will break
+ down when the populations are small.
 
 |#
 
@@ -49,8 +66,8 @@
 ; compscl => Sets the amount of human-human cooperation
 
 ;; Parameters
-; Tuned for 10 billion humans
-(setq compscl 10000000)
+; Strange number, but tuned for ~10 billion humans
+(setq compscl 10000400)
 
 ;; Print blank line
 (format t "~%")
@@ -171,8 +188,13 @@
 (format t "\%~%")
 
 ;; Switch from years to months
+; Easy conversion from years to months
 (setq months (* 12 years))
-(setq poprate (/ poprate 12.0))
+; Fix growth rate for exponential growth
+(setq poprate (+ 1 poprate))
+(setq poprate (expt poprate (/ 1 12.0)))
+(setq poprate (- poprate 1))
+; These are additive and should be fine
 (setq infrate (/ infrate 12.0))
 (setq erorate (/ erorate 12.0))
 
@@ -223,7 +245,7 @@
 (format t "~%")
 (format t "~%")
 
-;; Output more simulation info
+;; Output more simulation details
 (format t "~%")
 (format t "####")
 (format t "~%")
@@ -233,6 +255,11 @@
 (format t "for the first ")
 (princ months)
 (format t " months of a zombie outbreak.")
+(format t "~%")
+(format t "~%")
+(format t "This model should be realistic for large populations, but")
+(format t "~%")
+(format t "it will break down when the populations are small.")
 (format t "~%")
 
 ;; Set stats counters to zero
