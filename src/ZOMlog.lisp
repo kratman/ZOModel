@@ -19,6 +19,7 @@
 
  This program simulates a zombie outbreak using two logistic map style
  equations. Humans and zombies fight each other and the natural world.
+ It is designed for large populations and time scales.
 
  In a typical logistics map the human population would be given by:
 
@@ -348,7 +349,10 @@
 (format t " months.")
 (format t "~%")
 (if (> secapoc 0)
-  (format t " Extinction due to asteroid impact...~%"))
+  (format t " Extinction due to asteroid impact.~%"))
+(if (> zomapoc 0)
+  (if (< hpop 0.001)
+    (format t " Extinction due to zombie apocalypse.~%")))
 ; Print maximum number of humans
 (format t " Largest number of humans (in thousands): ")
 (princ maxh)
