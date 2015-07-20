@@ -53,7 +53,7 @@
 
 ;;; Main code ;;;
 
-;; Define variables
+;; Define input variables
 ; hpop => Initial human population
 ; zpop => Initial zombie population
 ; years => Simulation time in years
@@ -63,11 +63,19 @@
 ; infrate => Yearly infection rate
 ; merrate => Probability that the infected are prevented from turning
 ; erorate => Yearly rate of zombie destruction by natural forces
+
+;; Define tuned parameters
 ; compscl => Sets the amount of human-human cooperation
+; apoccyc => Global extinction frequency (months)
+
+;; Set random number generator
+(setf *random-state* (make-random-state t))
 
 ;; Parameters
-; Strange number, but tuned for ~10 billion humans
+; Strange numbers, but tuned for ~10 billion humans
 (setf compscl 10000400)
+(setf apoccyc 1200000000)
+
 
 ;; Print blank line
 (format t "~%")
@@ -267,6 +275,10 @@
 (setf maxz 0)
 (setf extmon 0)
 
+;; Set stats boolians
+(setf zomapoc 1)
+(setf secapoc 0)
+
 ;; Loop over the zombie apocalypse
 (format t "~%")
 (format t "####")
@@ -304,6 +316,17 @@
     (setf newzpop (- newzpop (* erorate zpop)))
     (if (> hpop 0.001)
       (setf newzpop (- newzpop (* winrate zpop))))
+    ; Check for second apocalypse
+    (setf randapoc (+ 1 (random apoccyc)))
+    (if (> randapoc (- apoccyc 1))
+      (setf secapoc 1))
+    (if (> secapoc 0)
+      (setf newhpop 0))
+    (if (> secapoc 0)
+      (if (> zomapoc 0)
+        (setf newzpop (* newzpop 0.1))))
+    (if (> secapoc 0)
+      (setf zomapoc 0))
     ; Prevent impossible populations
     (if (< newhpop 0.001) (setf newhpop 0))
     (if (< newzpop 0.001) (setf newzpop 0))
@@ -322,8 +345,10 @@
 ; Print human extiction date
 (format t " Humans survived for ")
 (princ extmon)
-(format t " months")
+(format t " months.")
 (format t "~%")
+(if (> secapoc 0)
+  (format t " Extinction due to asteroid impact...~%"))
 ; Print maximum number of humans
 (format t " Largest number of humans (in thousands): ")
 (princ maxh)
