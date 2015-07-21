@@ -26,7 +26,7 @@ To install,
 user:$ make install
 ```
 
-### ZOModel
+### ZOModel: Model for zombie outbreaks in small populations
 
 #### Input
 
@@ -57,7 +57,7 @@ after death.
 
 The simulation continues until either all humans or all zombies are dead.
 
-### ZOMlog: Zombie logistics map
+### ZOMlog: Zombie logistics map for large scale outbreaks
 
 #### Input
 
@@ -92,7 +92,9 @@ rates.
 
 While ZOModel favors the zombies by making humans defensive, ZOMlog favors
 the humans by including a population growth rate. The logistics model also
-includes human-human, human-nature, and zombie-nature interactions.
+includes human-human, human-nature, and zombie-nature interactions. The goal
+of ZOMlog is to simulate the coexistence of humans and zombies.
 
-Each month the populations of humans and zombies are updated and the
-simulation continues until the time runs out.
+Each month the populations of humans and zombies are updated. The
+simulation continues until the time runs out or both populations reach
+zero.

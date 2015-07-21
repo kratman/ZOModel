@@ -77,7 +77,6 @@
 (setf compscl 10000400)
 (setf apoccyc 1200000000)
 
-
 ;; Print blank line
 (format t "~%")
 
@@ -298,10 +297,14 @@
     (format t " ")
     (princ zpop)
     (format t "~%")
-    ; Collect stats
+    ; Update stats
     (if (> hpop maxh) (setf maxh hpop))
     (if (> zpop maxz) (setf maxz zpop))
     (if (> hpop 0) (setf extmon i))
+    ; Cleanly end simulation if both humans and zombies are gone
+    (if (< hpop 0.001)
+      (if (< zpop 0.001)
+        (setf i months)))
     ; Update human population
     (setf newhpop hpop)
     (setf newhpop (+ newhpop (* poprate hpop)))
@@ -336,18 +339,22 @@
     (setf zpop newzpop)
 )
 
-;; Print stats
+;; Print final stats
 (format t "~%")
 (format t "####")
 (format t "~%")
 (format t "~%")
 (format t "Statistics:")
 (format t "~%")
-; Print human extiction date
-(format t " Humans survived for ")
-(princ extmon)
-(format t " months.")
+; Print blank line
 (format t "~%")
+; Print human extiction date if the world ended
+(if (< hpop 0.001)
+  (format t " Humans survived for "))
+(if (< hpop 0.001)
+  (princ extmon))
+(if (< hpop 0.001)
+  (format t " months.~%"))
 (if (> secapoc 0)
   (format t " Extinction due to asteroid impact.~%"))
 (if (> zomapoc 0)
