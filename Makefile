@@ -12,7 +12,8 @@
 CXX=g++
 CXXFLAGS=-static -fopenmp -O3
 
-### Regular expression (sed) for clisp
+### Regular expression (sed) for lisp
+
 LISP=\/usr\/bin\/clisp
 
 ### Compile rules for users and devs

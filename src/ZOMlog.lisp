@@ -33,10 +33,10 @@
  The human-zombie model is given by:
 
  hpop = hpop + poprate*hpop - poprate*hpop*hpop/compscl
-        -(1-winrate)*zpop - infrate*hpop
+        - (1-winrate)*zpop - infrate*hpop
 
  zpop = zpop + (1-merrate)*((1-winrate)*zpop+infrate*hpop)
-        -erorate*zpop - winrate*zpop
+        - erorate*zpop - winrate*zpop
 
  where zpop is the zombie population, winrate is the probability that a
  human can beat a zombie, merrate is the probability that an infected

@@ -26,6 +26,8 @@ To install,
 user:$ make install
 ```
 
+If OpenMP and/or clisp are not installed, then the Makefile will need to be modified accordingly.
+
 ### ZOModel: Model for zombie outbreaks in small populations
 
 #### Input
@@ -79,10 +81,10 @@ tuned to allow the world to support 10 billion humans.
 The logistics map propagates the following equations:
 ```
   hpop = hpop + poprate*hpop - poprate*hpop*hpop/compscl
-         -(1-winrate)*zpop - infrate*hpop
+         - (1-winrate)*zpop - infrate*hpop
 
   zpop = zpop + (1-merrate)*((1-winrate)*zpop+infrate*hpop)
-         -erorate*zpop - winrate*zpop
+         - erorate*zpop - winrate*zpop
 ```
 
 Additional controls are added to avoid impossible populations and growth
