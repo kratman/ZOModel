@@ -15,7 +15,7 @@ ZOModel: Zombie Outbreak Modeling Software
 This is a simple set of programs I wrote to simulate a zombie outbreak over
 time. This was just for fun and is not a realistic model.
 
-Currently, two different models are availible in this repository. ZOModel
+Currently, two different models are available in this repository. ZOModel
 is for small populations of humans and zombies (e.g. an infested town). ZOMlog
 is for large scale populations (e.g. countries and planets).
 
@@ -57,9 +57,9 @@ the human, then the human either reanimates immediately or is eaten by the
 zombie (which prevents reanimation). If the human wins, the zombie is
 eliminated. However, not all humans escape unscathed. If a human leaves the
 fight will a little less flesh, then the human will survive one more day
-before turning into a zombie. Since humans are compasionate [citation needed],
-there is a chance that the victim is mercifully prevented from reanimating
-after death.
+before turning into a zombie. Since humans are compassionate
+[citation needed], there is a chance that the victim is mercifully prevented
+from reanimating after death.
 
 The simulation continues until either all humans or all zombies are dead.
 
