@@ -16,8 +16,9 @@ This is a simple set of programs I wrote to simulate a zombie outbreak over
 time. This was just for fun and is not a realistic model.
 
 Currently, two different models are available in this repository. ZOModel
-is for small populations of humans and zombies (e.g. an infested town). ZOMlog
-is for large scale populations (e.g. countries and planets).
+is designed for small populations of humans and zombies (e.g. an infested
+town). ZOMlog is designed for large scale populations (e.g. infested countries
+and planets).
 
 Recommended packages:
 ```
