@@ -26,21 +26,23 @@ clean:	title delbin compdone
 
 zombin:	
 	@echo ""; \
-	echo "### Compiling the ZOModel binary ###"
-	$(CXX) $(CXXFLAGS) ./src/ZOModel.cpp -o ZOModel
+	echo "### Compiling the ZOModel binary ###"; \
+	mkdir -p bin
+	$(CXX) $(CXXFLAGS) ./src/ZOModel.cpp -o ./bin/ZOModel
 
 zomlog:	
 	@echo ""; \
 	echo "### Making the ZOMlog executable ###"; \
+	mkdir -p bin; \
 	echo " Copy lisp code..."; \
-	cat ./src/ZOMlog.lisp > ZOMlog; \
+	cat ./src/ZOMlog.lisp > ./bin/ZOMlog; \
 	echo " Set lisp interpreter..."; \
-	sed -i 's/\;CLISP/\#\!$(LISP)/g' ZOMlog; \
+	sed -i 's/\;CLISP/\#\!$(LISP)/g' ./bin/ZOMlog; \
 	echo " Purge garbage..."; \
-	sed -i '/\;/d' ZOMlog; \
-	sed -i '/\#|/,/|\#/d' ZOMlog; \
-	sed -i '/^$$/d' ZOMlog; \
-	chmod a+x ZOMlog; \
+	sed -i '/\;/d' ./bin/ZOMlog; \
+	sed -i '/\#|/,/|\#/d' ./bin/ZOMlog; \
+	sed -i '/^$$/d' ./bin/ZOMlog; \
+	chmod a+x ./bin/ZOMlog; \
 	echo " [Complete]"
 
 title:	
@@ -73,4 +75,4 @@ delbin:
 	echo ""; \
 	echo ""; \
 	echo "Removing executables..."; \
-	rm -f ZOModel ZOMlog
+	rm -rf ./bin
