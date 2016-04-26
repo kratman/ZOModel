@@ -239,3 +239,4 @@ void ZOMPrint(int& DayCount, ZOMSettings& Plague)
 };
 
 #endif
+

@@ -45,6 +45,11 @@ ZOMOdds requires two command line arguments:
 -Percent of the population that was zombified
 -Percent of the survivors that can fight
 ```
+The executable does not prompt users for these numbers. Instead the numbers
+must be given as command line arguments.
+```
+ user:$ ZOMOdds ZombiePercent FighterPercent
+```
 
 #### Rules of the game
 

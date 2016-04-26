@@ -61,3 +61,4 @@ void ZOMUpdate(vector<MeatBag>&,ZOMSettings&);
 void ZOMPrint(int&,ZOMSettings&);
 
 #endif
+

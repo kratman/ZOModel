@@ -55,7 +55,7 @@ if ((ZomPer == "--help") || (ZomPer == "-h"))
   //Print help and exit
   helptext = "Usage:"
   helptext += '\n'
-  helptext += "  user:$ ./ZOMOdds ZombiePercent FighterPercent"
+  helptext += "  user:$ ZOMOdds ZombiePercent FighterPercent"
   helptext += '\n'
   console.log(helptext)
 }
