@@ -16,14 +16,14 @@ This is a simple set of programs I wrote to simulate a zombie outbreak over
 time. This was just for fun and is not a realistic model.
 
 Currently, three different models are available in this repository. ZOMOdds
-performs a back of the envolope calculation of the number of zombies a human
+performs a back of the envelope calculation of the number of zombies a human
 population needs to eliminate. ZOModel is designed to simulate small
 populations of humans and zombies (e.g. an infested town). ZOMlog is designed
 for large scale populations (e.g. infested countries and planets).
 
 Recommended packages:
 ```
- ZOMOdds: node.js
+ ZOMOdds: nodejs
  ZOModel: OpenMP
  ZOMlog: clisp
 ```
@@ -33,18 +33,23 @@ To install,
 user:$ make install
 ```
 
-If OpenMP, node.js, and/or clisp are not installed, then the Makefile will
+If OpenMP, nodejs, and/or clisp are not installed, then the Makefile will
 need to be modified accordingly.
 
 ### ZOMOdds: Approximate number of zombies each survior must eliminate
 
 #### Input
 
-
+ZOMOdds requires two command line arguments:
+```
+-Percent of the population that was zombified
+-Percent of the survivors that can fight
+```
 
 #### Rules of the game
 
-
+ZOMOdds performs a back of the envelope calculation to estimate the number
+of zombies each survivor has to eliminate.
 
 ### ZOModel: Model for zombie outbreaks in small populations
 
@@ -118,3 +123,4 @@ of ZOMlog is to simulate the coexistence of humans and zombies.
 Each month the populations of humans and zombies are updated. The
 simulation continues until the time runs out or both populations reach
 zero.
+

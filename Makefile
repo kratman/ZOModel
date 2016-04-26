@@ -12,17 +12,33 @@
 CXX=g++
 CXXFLAGS=-static -fopenmp -O3
 
-### Regular expression (sed) for lisp
+### Regular expression (sed) for lisp and JavaScript
 
 LISP=\/usr\/bin\/clisp
+JVASCPT=\/usr\/bin\/nodejs
 
 ### Compile rules for users and devs
 
-install:	title zombin zomlog compdone
+install:	title zomodd zombin zomlog compdone
 
 clean:	title delbin compdone
 
 ### Rules for building various parts of the code
+
+zomodd:	
+	@echo ""; \
+	echo "### Making the ZOMlog executable ###"; \
+	mkdir -p bin; \
+	echo " Copying JavaScript code..."; \
+	cat ./src/ZOMOdds.js > ./bin/ZOMOdds; \
+	echo " Setting JS interpreter..."; \
+	sed -i 's/\/\/JAVASCRIPT/\#\!$(JVASCPT)/g' ./bin/ZOMOdds; \
+	echo " Purging garbage..."; \
+	sed -i '/\/\//d' ./bin/ZOMOdds; \
+	sed -i '/\/\*/,/\*\//d' ./bin/ZOMOdds; \
+	sed -i '/^$$/d' ./bin/ZOMOdds; \
+	chmod a+x ./bin/ZOMOdds; \
+	echo " [Complete]"
 
 zombin:	
 	@echo ""; \
@@ -34,11 +50,11 @@ zomlog:
 	@echo ""; \
 	echo "### Making the ZOMlog executable ###"; \
 	mkdir -p bin; \
-	echo " Copy lisp code..."; \
+	echo " Copying lisp code..."; \
 	cat ./src/ZOMlog.lisp > ./bin/ZOMlog; \
-	echo " Set lisp interpreter..."; \
+	echo " Setting lisp interpreter..."; \
 	sed -i 's/\;CLISP/\#\!$(LISP)/g' ./bin/ZOMlog; \
-	echo " Purge garbage..."; \
+	echo " Purging garbage..."; \
 	sed -i '/\;/d' ./bin/ZOMlog; \
 	sed -i '/\#|/,/|\#/d' ./bin/ZOMlog; \
 	sed -i '/^$$/d' ./bin/ZOMlog; \
