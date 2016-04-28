@@ -12,5 +12,5 @@ ZOModel: Zombie Outbreak Modeling Software
 ### ZOModelApp
 
 This directory contains the source code and related files to build the
-Android version of ZOModel. This directory is for my own backup purposes and
-should not be modified by users.
+GUI and Android versions of ZOModel. This directory is primarily for my own
+backup purposes and should not be modified by users.
