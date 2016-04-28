@@ -27,7 +27,7 @@ clean:	title delbin compdone
 
 zomodd:	
 	@echo ""; \
-	echo "### Making the ZOMlog executable ###"; \
+	echo "### Making the ZOMOdds executable ###"; \
 	mkdir -p bin; \
 	echo " Copying JavaScript code..."; \
 	cat ./src/ZOMOdds.js > ./bin/ZOMOdds; \
