@@ -12,6 +12,7 @@
 */
 
 //Load Java packages
+import java.awt.*;
 import javax.swing.*;
 
 //Define initial class
@@ -50,9 +51,59 @@ public class ZOModelApp
     //Create interactive window
     JFrame intFrame = new JFrame("ZOModelApp");
     intFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    intFrame.setLayout(new BoxLayout(intFrame.getContentPane(),
+                       BoxLayout.Y_AXIS));
 
-    //Read input from the interactive window
+    //*Read input from the interactive window *//
 
+    //Prompt for ZOMOdds input
+    JLabel oddsInputText = new JLabel("Set probabilities for ZOMOdds:",
+                                  SwingConstants.LEFT);
+    oddsInputText.setFont(oddsInputText.getFont().deriveFont(25.0f));
+    //Create slider for oddsZomPer
+    JLabel oddsZomPerLabel = new JLabel("Zombified humans (%):");
+    oddsZomPerLabel.setFont(oddsZomPerLabel.getFont().deriveFont(18.0f));
+    JSlider oddsZomPerSlide = new JSlider(JSlider.HORIZONTAL,0,100,90);
+    oddsZomPerSlide.setMajorTickSpacing(10);
+    oddsZomPerSlide.setMinorTickSpacing(2);
+    oddsZomPerSlide.setPaintTicks(true);
+    oddsZomPerSlide.setPaintLabels(true);
+    //Create slider for oddsFightPer
+    JLabel oddsFightPerLabel = new JLabel("Survivors that can fight (%):");
+    oddsFightPerLabel.setFont(oddsFightPerLabel.getFont().deriveFont(18.0f));
+    JSlider oddsFightPerSlide = new JSlider(JSlider.HORIZONTAL,0,100,50);
+    oddsFightPerSlide.setMajorTickSpacing(10);
+    oddsFightPerSlide.setMinorTickSpacing(2);
+    oddsFightPerSlide.setPaintTicks(true);
+    oddsFightPerSlide.setPaintLabels(true);
+    //Add items to the window
+    intFrame.add(oddsInputText,SwingConstants.CENTER,0);
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,1);
+    intFrame.add(oddsZomPerLabel,SwingConstants.CENTER,2);
+    intFrame.add(oddsZomPerSlide,SwingConstants.CENTER,3);
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,4);
+    intFrame.add(oddsFightPerLabel,SwingConstants.CENTER,5);
+    intFrame.add(oddsFightPerSlide,SwingConstants.CENTER,6);
+    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,7);
+
+    //Prompt for ZOMlog input
+    JLabel logInputText = new JLabel("Set rates for ZOMlog:",
+                                  SwingConstants.LEFT);
+    logInputText.setFont(logInputText.getFont().deriveFont(25.0f));
+    //Add items to the window
+    intFrame.add(logInputText,SwingConstants.CENTER,8);
+    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,9);
+
+    //Prompt for ZOModel input
+    JLabel modelInputText = new JLabel("Set probabilities for ZOModel:",
+                                  SwingConstants.LEFT);
+    modelInputText.setFont(modelInputText.getFont().deriveFont(25.0f));
+    intFrame.add(modelInputText,SwingConstants.CENTER,10);
+    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,11);
+
+    //Show window
+    intFrame.pack();
+    intFrame.setVisible(true);
 
     //* ZOMOdds calculations *//
     oddsNumZom = (100.0/(100.0-oddsZomPer))/(oddsFightPer/100.0);
