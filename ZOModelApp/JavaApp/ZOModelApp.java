@@ -21,6 +21,9 @@ public class ZOModelApp
   //Main
   public static void main(String[] args)
   {
+    //Initialize general variables
+    int framePosCt = 0; //Counter for the position in the frame
+
     //Initialize ZOMOdds variables
     double oddsZomPer = 0.0; //Zombie population for ZOMOdds
     double oddsFightPer = 0.0; //Fighting percentage for ZOMOdds
@@ -57,12 +60,12 @@ public class ZOModelApp
     //*Read input from the interactive window *//
 
     //Prompt for ZOMOdds input
-    JLabel oddsInputText = new JLabel("Set probabilities for ZOMOdds:",
+    JLabel oddsInputText = new JLabel("Settings for ZOMOdds:",
                                   SwingConstants.LEFT);
-    oddsInputText.setFont(oddsInputText.getFont().deriveFont(25.0f));
+    oddsInputText.setFont(oddsInputText.getFont().deriveFont(18.0f));
     //Create slider for oddsZomPer
     JLabel oddsZomPerLabel = new JLabel("Zombified humans (%):");
-    oddsZomPerLabel.setFont(oddsZomPerLabel.getFont().deriveFont(18.0f));
+    oddsZomPerLabel.setFont(oddsZomPerLabel.getFont().deriveFont(12.0f));
     JSlider oddsZomPerSlide = new JSlider(JSlider.HORIZONTAL,0,100,90);
     oddsZomPerSlide.setMajorTickSpacing(10);
     oddsZomPerSlide.setMinorTickSpacing(2);
@@ -70,36 +73,104 @@ public class ZOModelApp
     oddsZomPerSlide.setPaintLabels(true);
     //Create slider for oddsFightPer
     JLabel oddsFightPerLabel = new JLabel("Survivors that can fight (%):");
-    oddsFightPerLabel.setFont(oddsFightPerLabel.getFont().deriveFont(18.0f));
+    oddsFightPerLabel.setFont(oddsFightPerLabel.getFont().deriveFont(12.0f));
     JSlider oddsFightPerSlide = new JSlider(JSlider.HORIZONTAL,0,100,50);
     oddsFightPerSlide.setMajorTickSpacing(10);
     oddsFightPerSlide.setMinorTickSpacing(2);
     oddsFightPerSlide.setPaintTicks(true);
     oddsFightPerSlide.setPaintLabels(true);
     //Add items to the window
-    intFrame.add(oddsInputText,SwingConstants.CENTER,0);
-    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,1);
-    intFrame.add(oddsZomPerLabel,SwingConstants.CENTER,2);
-    intFrame.add(oddsZomPerSlide,SwingConstants.CENTER,3);
-    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,4);
-    intFrame.add(oddsFightPerLabel,SwingConstants.CENTER,5);
-    intFrame.add(oddsFightPerSlide,SwingConstants.CENTER,6);
-    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,7);
+    intFrame.add(oddsInputText,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(oddsZomPerLabel,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(oddsZomPerSlide,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(oddsFightPerLabel,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(oddsFightPerSlide,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
 
     //Prompt for ZOMlog input
-    JLabel logInputText = new JLabel("Set rates for ZOMlog:",
+    JLabel logInputText = new JLabel("Settings for ZOMlog:",
                                   SwingConstants.LEFT);
-    logInputText.setFont(logInputText.getFont().deriveFont(25.0f));
+    logInputText.setFont(logInputText.getFont().deriveFont(18.0f));
+    //Create text box for logHPop
+    JLabel logHPopLabel = new JLabel("Human population (thousands):");
+    logHPopLabel.setFont(logHPopLabel.getFont().deriveFont(12.0f));
+    
+    //Create text box for logZPop
+    JLabel logHPopLabel = new JLabel("Human population (thousands):");
+    logHPopLabel.setFont(logHPopLabel.getFont().deriveFont(12.0f));
+    
+    //Create text box for logYears
+    JLabel logHPopLabel = new JLabel("Length of simulation (years):");
+    logHPopLabel.setFont(logHPopLabel.getFont().deriveFont(12.0f));
+    
+    //Create slider for logPopRate
+    JLabel logPopRateLabel = new JLabel("Fractional population growth rate:");
+    logPopRateLabel.setFont(logPopRateLabel.getFont().deriveFont(12.0f));
+    JSlider logPopRateSlide = new JSlider(JSlider.HORIZONTAL,0,0.2,0.02);
+    logPopRateSlide.setMajorTickSpacing(0.05);
+    logPopRateSlide.setMinorTickSpacing(0.01);
+    logPopRateSlide.setPaintTicks(true);
+    logPopRateSlide.setPaintLabels(true);
+    //Create slider for logWinRate
+    JLabel logWinRateLabel = new JLabel("Probability of humans killing a "
+                                        +"zombie:");
+    logWinRateLabel.setFont(logWinRateLabel.getFont().deriveFont(12.0f));
+    JSlider logWinRateSlide = new JSlider(JSlider.HORIZONTAL,0,1,0.5);
+    logWinRateSlide.setMajorTickSpacing(0.1);
+    logWinRateSlide.setMinorTickSpacing(0.05);
+    logWinRateSlide.setPaintTicks(true);
+    logWinRateSlide.setPaintLabels(true);
+    //Create slider for logInfRate
+    JLabel logInfRateLabel = new JLabel("Yearly natural infection rate:");
+    logInfRateLabel.setFont(logInfRateLabel.getFont().deriveFont(12.0f));
+    JSlider logInfRateSlide = new JSlider(JSlider.HORIZONTAL,0,0.2,0.02);
+    logInfRateSlide.setMajorTickSpacing(0.05);
+    logInfRateSlide.setMinorTickSpacing(0.01);
+    logInfRateSlide.setPaintTicks(true);
+    logInfRateSlide.setPaintLabels(true);
+    //Create slider for logMerRate
+    JLabel logMerRateLabel = new JLabel("Proability that the infected are "
+                                        +"prevented from reanimating:");
+    logMerRateLabel.setFont(logMerRateLabel.getFont().deriveFont(12.0f));
+    JSlider logMerRateSlide = new JSlider(JSlider.HORIZONTAL,0,1,0.1);
+    logMerRateSlide.setMajorTickSpacing(0.25);
+    logMerRateSlide.setMinorTickSpacing(0.1);
+    logMerRateSlide.setPaintTicks(true);
+    logMerRateSlide.setPaintLabels(true);
+    //Create slider for logEroRate
+    JLabel logEroRateLabel = new JLabel("Yearly natural zombie erosion rate:");
+    logEroRateLabel.setFont(logEroRateLabel.getFont().deriveFont(12.0f));
+    JSlider logEroRateSlide = new JSlider(JSlider.HORIZONTAL,0.50,0.05);
+    logEroRateSlide.setMajorTickSpacing(0.05);
+    logEroRateSlide.setMinorTickSpacing(0.01);
+    logEroRateSlide.setPaintTicks(true);
+    logEroRateSlide.setPaintLabels(true);
     //Add items to the window
-    intFrame.add(logInputText,SwingConstants.CENTER,8);
-    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,9);
+    intFrame.add(logInputText,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    
 
     //Prompt for ZOModel input
-    JLabel modelInputText = new JLabel("Set probabilities for ZOModel:",
+    JLabel modelInputText = new JLabel("Settings for ZOModel:",
                                   SwingConstants.LEFT);
-    modelInputText.setFont(modelInputText.getFont().deriveFont(25.0f));
-    intFrame.add(modelInputText,SwingConstants.CENTER,10);
-    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,11);
+    modelInputText.setFont(modelInputText.getFont().deriveFont(18.0f));
+    //Add items to the window
+    intFrame.add(modelInputText,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
 
     //Show window
     intFrame.pack();
