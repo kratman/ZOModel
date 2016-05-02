@@ -33,8 +33,8 @@ public class ZOModelApp
     //Initialize ZOMlog variables
     double logHPop = 7000000.0; //Human population for ZOMlog
     double logZPop = 100.0; //Zombie population for ZOMlog
-    double logYears = 5.0; //Simulation time in years for ZOMlog
-    double logMonths = 60.0; //Simulation time in months for ZOMlog
+    int logYears = 5; //Simulation time in years for ZOMlog
+    int logMonths = 60; //Simulation time in months for ZOMlog
     double logPopRate = 0.02; //Population growth rate for ZOMlog
     double logWinRate = 0.60; //Human win rate for ZOMlog
     double logInfRate = 0.02; //Natural infection rate for ZOMlog
@@ -42,8 +42,6 @@ public class ZOModelApp
     double logEroRate = 0.05; //Zombie erosion rate for ZOMlog
     double logCompScl = 10000400.0; //Human-human cooperation for ZOMlog
     double logApocCyc = 1200000000.0; //Months between extinctions for ZOMlog
-    boolean logZomApoc = true; //ZOMlog flag to check for zombies
-    boolean logApoc = false; //ZOMlog flag to check for an extinction event
     int logExtMon = 0; //Extinction month output for ZOMlog
     double logMaxHum = 0; //Maximum number of humans output for ZOMlog
     double logMaxZom = 0; //Maximum number of zombies output for ZOMlog
@@ -233,8 +231,19 @@ public class ZOModelApp
     //Adjust additive rates
     logInfRate /= 12.0;
     logEroRate /= 12.0;
+    //Create output array
+    double[] logHumans = new double[logMonths];
+    double[] logZombies = new double[logMonths];
+    String[] logMessages = new String[logMonths];
+    for (int i=0;i<logMonths;i++)
+    {
+      //Initialize arrays to zero
+      logHumans[i] = 0;
+      logZombies[i] = 0;
+      logMessages[i] = "";
+    }
     //Perform simulation
-    for (int i=0;i<logYears;i++)
+    for (int i=0;i<logMonths;i++)
     {
       //Create temporary variables
       double newHPop = 0;
@@ -253,7 +262,11 @@ public class ZOModelApp
         logExtMon = i;
       }
       //End simulation if both humans and zombies are gone
-      
+      if ((logHPop < 0.001) && (logZPop < 0.001))
+      {
+        //Set counter to the last month
+        i = logMonths;
+      }
       //Update human population
       newHPop = logHPop; //Old population
       newHPop += logPopRate*logHPop; //Sex
@@ -270,7 +283,21 @@ public class ZOModelApp
       }
       newZPop -= logEroRate*logZPop; //Zombie-nature
       //Check for a second apocalypse
-      
+      double randNum = Math.random()*logApocCyc+1;
+      if (randNum > logApocCyc)
+      {
+        newHPop = 0;
+        newZPop *= 0.1;
+        randNum = Math.random();
+        if (randNum > 0.5)
+        {
+          logMessages[i] = "A comet has struck the Earth!!!";
+        }
+        else
+        {
+          logMessages[i] = "An asteroid has struck the Earth!!!";
+        }
+      }
       //Prevent impossible populations
       if (newHPop < 0.001)
       {
@@ -283,12 +310,25 @@ public class ZOModelApp
       //Save populations
       logHPop = newHPop;
       logZPop = newZPop;
+      logHumans[i] = logHPop;
+      logZombies[i] = logZPop;
     }
 
     //* ZOModel calculations *//
 
 
-    //Show output in the interactive window
+    //* Show output in the interactive window *//
+
+    //Clear window
+
+
+    //Print ZOMOdds stats
+
+
+    //Graph ZOMlog populations
+
+
+    //Graph ZOModel populations
 
 
     //Exit
