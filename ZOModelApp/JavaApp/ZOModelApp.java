@@ -54,6 +54,9 @@ public class ZOModelApp
     intFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     intFrame.setLayout(new BoxLayout(intFrame.getContentPane(),
                        BoxLayout.Y_AXIS));
+    intFrame.setPreferredSize(new Dimension(400,450));
+    JScrollPane inputScrollBar = new JScrollPane();
+    intFrame.add(inputScrollBar);
 
     //*Read input from the interactive window *//
 

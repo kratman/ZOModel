@@ -36,6 +36,10 @@ user:$ make install
 If OpenMP, nodejs, and/or clisp are not installed, then the Makefile will
 need to be modified accordingly.
 
+### ZOModelApp
+
+An Android app and Java GUI are currently in development.
+
 ### ZOMOdds: Approximate number of zombies each survior must eliminate
 
 #### Input
