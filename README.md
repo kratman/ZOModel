@@ -38,7 +38,7 @@ need to be modified accordingly.
 
 ### ZOModelApp
 
-An Android app and Java GUI are currently in development.
+An Android app and Java GUI are currently in development...
 
 ### ZOMOdds: Approximate number of zombies each survior must eliminate
 

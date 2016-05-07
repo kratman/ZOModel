@@ -5,7 +5,8 @@
 #                                                                            #
 ##############################################################################
 
-#NB: The installer for the lisp code uses Linux shell commands (sed,chmod).
+#NB: The installer for the lisp and JavaScript source code uses Linux shell
+#    commands (sed,chmod).
 
 ### Compiler settings
 
