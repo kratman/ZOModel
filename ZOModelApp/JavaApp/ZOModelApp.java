@@ -50,13 +50,16 @@ public class ZOModelApp
 
 
     //Create interactive window
-    JFrame intFrame = new JFrame("ZOModelApp");
-    intFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    intFrame.setLayout(new BoxLayout(intFrame.getContentPane(),
+    JFrame mainFrame = new JFrame("ZOModelApp");
+    mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    mainFrame.setLayout(new BoxLayout(mainFrame.getContentPane(),
                        BoxLayout.Y_AXIS));
-    intFrame.setPreferredSize(new Dimension(400,450));
-    JScrollPane inputScrollBar = new JScrollPane();
-    intFrame.add(inputScrollBar);
+    mainFrame.setPreferredSize(new Dimension(400,450));
+    JPanel intFrame = new JPanel();
+    JScrollPane scrollFrame = new JScrollPane(intFrame,
+                              JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                              JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    mainFrame.add(scrollFrame);
 
     //*Read input from the interactive window *//
 
@@ -217,8 +220,8 @@ public class ZOModelApp
     framePosCt += 1;
 
     //Show window
-    intFrame.pack();
-    intFrame.setVisible(true);
+    mainFrame.pack();
+    mainFrame.setVisible(true);
 
     //* ZOMOdds calculations *//
     oddsNumZom = (100.0/(100.0-oddsZomPer))/(oddsFightPer/100.0);
