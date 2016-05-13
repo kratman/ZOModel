@@ -47,7 +47,7 @@ public class ZOModelApp
     double logMaxZom = 0; //Maximum number of zombies output for ZOMlog
 
     //Initialize ZOModel variables
-
+    
 
     //Create interactive window
     JFrame mainFrame = new JFrame("ZOModelApp");
@@ -56,7 +56,7 @@ public class ZOModelApp
     JPanel intFrame = new JPanel();
     intFrame.setLayout(new BoxLayout(intFrame,BoxLayout.Y_AXIS));
     JScrollPane scrollFrame = new JScrollPane(intFrame,
-                              JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                              JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                               JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     mainFrame.add(scrollFrame);
 
@@ -218,16 +218,25 @@ public class ZOModelApp
     intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,framePosCt);
     framePosCt += 1;
 
+    //Add the OK button
+    
+
     //Show window
     mainFrame.pack();
     mainFrame.setVisible(true);
 
-    //* ZOMOdds calculations *//
+    //* ZOMOdds *//
+
+    //Calculations
     oddsNumZom = (100.0/(100.0-oddsZomPer))/(oddsFightPer/100.0);
     oddsNumZom = Math.ceil(oddsNumZom);
     oddsWinPer = 100.0*oddsNumZom/(oddsNumZom+1.0);
+    //Print statistics
+    
 
-    //* ZOMlog calculations *//
+    //* ZOMlog *//
+
+    //Calculations
     logMonths = 12*logYears; //Switch from years to months
     //Adjust growth rate for exponential growth
     logPopRate += 1;
@@ -318,23 +327,23 @@ public class ZOModelApp
       logHumans[i] = logHPop;
       logZombies[i] = logZPop;
     }
+    //Plot results
+    
 
-    //* ZOModel calculations *//
+    //* ZOModel *//
 
+    //Calculations
+    
+    //Plot results
+    
 
     //* Show output in the interactive window *//
 
     //Clear window
+    //intFrame.removeAll();
 
-
-    //Print ZOMOdds stats
-
-
-    //Graph ZOMlog populations
-
-
-    //Graph ZOModel populations
-
+    //Add results to the window
+    
 
     //Exit
     return;
