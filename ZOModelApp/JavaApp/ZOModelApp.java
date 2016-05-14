@@ -47,7 +47,7 @@ public class ZOModelApp
     double logMaxZom = 0; //Maximum number of zombies output for ZOMlog
 
     //Initialize ZOModel variables
-    
+
 
     //Create interactive window
     JFrame mainFrame = new JFrame("ZOModelApp");
