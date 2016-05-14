@@ -218,8 +218,10 @@ public class ZOModelApp
     intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,framePosCt);
     framePosCt += 1;
 
-    //Add the OK button
-    
+    //Add the continue button
+    JButton contButton = new JButton("Continue...");
+    intFrame.add(contButton,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
 
     //Show window
     mainFrame.pack();
