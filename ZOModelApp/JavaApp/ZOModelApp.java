@@ -47,7 +47,14 @@ public class ZOModelApp
     double logMaxZom = 0; //Maximum number of zombies output for ZOMlog
 
     //Initialize ZOModel variables
-
+    int modHPop = 100000; //Human population for ZOModel
+    int modZPop = 5000; //Zombie population for ZOModel
+    int modBitten = 0; //Number of bitten humans for ZOModel
+    double modWinProb = 0.60; //Prob. that a human kills a zombie for ZOModel
+    double modEatProb = 0.25; //Prob. that a zombie eats the human for ZOModel
+    double modBitProb = 0.25; //Prob. that a human was bitten for ZOModel
+    double modMerProb = 0.01; //Prob. that a reanimation is stopped for ZOModel
+    double modInfProb = 0.25; //Initial infection rate for ZOModel
 
     //Create interactive window
     JFrame mainFrame = new JFrame("ZOModelApp");
@@ -212,8 +219,97 @@ public class ZOModelApp
     JLabel modelInputText = new JLabel("Settings for ZOModel:",
                                   SwingConstants.LEFT);
     modelInputText.setFont(modelInputText.getFont().deriveFont(18.0f));
+    //Create text box for modHPop
+    JLabel modHPopLabel = new JLabel("Human population:");
+    modHPopLabel.setFont(modHPopLabel.getFont().deriveFont(12.0f));
+    JTextField modHPopBox = new JTextField("100000",10);
+    //Create text box for modZPop
+    JLabel modZPopLabel = new JLabel("Zombie population:");
+    modZPopLabel.setFont(modZPopLabel.getFont().deriveFont(12.0f));
+    JTextField modZPopBox = new JTextField("5000",10);
+    //Create text box for modWinProb
+    JLabel modWinProbLabel = new JLabel("Probability of a human killing a "
+                                        +"zombie:");
+    modWinProbLabel.setFont(modWinProbLabel.getFont().deriveFont(12.0f));
+    JTextField modWinProbBox = new JTextField("0.60",10);
+    //Create text box for modEatProb
+    JLabel modEatProbLabel = new JLabel("Probability of a zombie eating a "
+                                        +"human:");
+    modEatProbLabel.setFont(modEatProbLabel.getFont().deriveFont(12.0f));
+    JTextField modEatProbBox = new JTextField("0.25",10);
+    //Create text box for modBitProb
+    JLabel modBitProbLabel = new JLabel("Probability of a human being bitten "
+                                        +"during a fight:");
+    modBitProbLabel.setFont(modBitProbLabel.getFont().deriveFont(12.0f));
+    JTextField modBitProbBox = new JTextField("0.25",10);
+    //Create slider for logMerProb
+    JLabel modMerProbLabel = new JLabel("Proability that the infected are "
+                                        +"prevented from reanimating:");
+    modMerProbLabel.setFont(modMerProbLabel.getFont().deriveFont(12.0f));
+    JTextField modMerProbBox = new JTextField("0.01",10);
+    //Create slider for logInfProb
+    JLabel modInfProbLabel = new JLabel("Probability that a human is initally "
+                                        +"infected:");
+    modInfProbLabel.setFont(modInfProbLabel.getFont().deriveFont(12.0f));
+    JTextField modInfProbBox = new JTextField("0.25",10);
     //Add items to the window
     intFrame.add(modelInputText,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modHPopLabel,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modHPopBox,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modZPopLabel,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modZPopBox,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modWinProbLabel,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modWinProbBox,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modEatProbLabel,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modEatProbBox,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modBitProbLabel,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modBitProbBox,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modMerProbLabel,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modMerProbBox,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modInfProbLabel,SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(new JLabel("\n"),SwingConstants.CENTER,framePosCt);
+    framePosCt += 1;
+    intFrame.add(modInfProbBox,SwingConstants.CENTER,framePosCt);
     framePosCt += 1;
     intFrame.add(new JLabel("\n\n\n"),SwingConstants.CENTER,framePosCt);
     framePosCt += 1;
