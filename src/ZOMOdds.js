@@ -100,17 +100,14 @@ else
   console.log("  *Survivors in the fight: "+FightPer+"%")
 
   //Estimate odds
-  NumZom = (100.0/(100.0-ZomPer))/(FightPer/100.0)
+  NumZom = (ZomPer/(100.0-ZomPer))/(FightPer/100.0)
   NumZom = Math.ceil(NumZom)
-  WinPer = 100.0*NumZom/(NumZom+1.0)
-  WinPer = +WinPer.toFixed(2)
 
   //Print results
   console.log("")
   console.log("Results")
   console.log("-------")
   console.log("  *Number of zombies each survivor needs to eliminate: "+NumZom)
-  console.log("  *Survivors need to win ~"+WinPer+"% of one-on-one fights.")
   console.log("")
 }
 

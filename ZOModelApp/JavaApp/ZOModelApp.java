@@ -28,7 +28,6 @@ public class ZOModelApp
     double oddsZomPer = 90.0; //Zombie population for ZOMOdds
     double oddsFightPer = 50.0; //Fighting percentage for ZOMOdds
     double oddsNumZom = 0.0; //Output for ZOMOdds
-    double oddsWinPer = 0.0; //Output for ZOMOdds
 
     //Initialize ZOMlog variables
     double logHPop = 7000000.0; //Human population for ZOMlog
@@ -326,9 +325,8 @@ public class ZOModelApp
     //* ZOMOdds *//
 
     //Calculations
-    oddsNumZom = (100.0/(100.0-oddsZomPer))/(oddsFightPer/100.0);
+    oddsNumZom = (oddsZomPer/(100.0-oddsZomPer))/(oddsFightPer/100.0);
     oddsNumZom = Math.ceil(oddsNumZom);
-    oddsWinPer = 100.0*oddsNumZom/(oddsNumZom+1.0);
     //Print statistics
     
 
