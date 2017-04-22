@@ -15,37 +15,37 @@
 */
 
 //Initialize variables
-var ZomPer = process.argv[2]
-var FightPer = +process.argv[3]
-var NumZom = 0.0
-var WarnCheck = 0
-var titleline = ""
-var helptext = ""
+var feedDays = process.argv[2]
+var deathPer = +process.argv[3]
+var numVamp = 0.0
+var warnCheck = 0
+var titleLine = ""
+var helpText = ""
 
 //Print header
 console.log("")
-titleline = ""
-titleline += "######################################"
-titleline += "########################################"
-titleline += '\n'
-titleline += "#                                     "
-titleline += "                                       #"
-titleline += '\n'
-titleline += "#                      "
-titleline += "ZOModel: Zombie Outbreak Modeling"
-titleline += "                     #"
-titleline += '\n'
-titleline += "#                             "
-titleline += "By: Eric G. Kratz"
-titleline += "                              #"
-titleline += '\n'
-titleline += "#                              "
-titleline += "                                              #"
-titleline += '\n'
-titleline += "###############################################"
-titleline += "###############################"
-titleline += '\n'
-console.log(titleline)
+titleLine = ""
+titleLine += "######################################"
+titleLine += "########################################"
+titleLine += '\n'
+titleLine += "#                                     "
+titleLine += "                                       #"
+titleLine += '\n'
+titleLine += "#                      "
+titleLine += "ZOModel: Zombie Outbreak Modeling"
+titleLine += "                     #"
+titleLine += '\n'
+titleLine += "#                             "
+titleLine += "By: Eric G. Kratz"
+titleLine += "                              #"
+titleLine += '\n'
+titleLine += "#                              "
+titleLine += "                                              #"
+titleLine += '\n'
+titleLine += "###############################################"
+titleLine += "###############################"
+titleLine += '\n'
+console.log(titleLine)
 
 //Start calculations
 if ((ZomPer == "--help") || (ZomPer == "-h"))
@@ -53,7 +53,7 @@ if ((ZomPer == "--help") || (ZomPer == "-h"))
   //Print help and exit
   helptext = "Usage:"
   helptext += '\n'
-  helptext += "  user:$ ZOMOdds ZombiePercent FighterPercent"
+  helptext += "  user:$ VOMSpread DaysBetweenFeeds PercentKilledVictims"
   helptext += '\n'
   console.log(helptext)
 }
