@@ -15,79 +15,80 @@
 */
 
 //Initialize variables
-var ZomPer = process.argv[2]
-var FightPer = +process.argv[3]
-var NumZom = 0.0
-var WarnCheck = 0
-var titleline = ""
-var helptext = ""
+var zomPer = process.argv[2]
+var fightPer = +process.argv[3]
+var numZom = 0.0
+var warnCheck = 0
+var titleLine = ""
+var helpText = ""
 
 //Print header
 console.log("")
-titleline = ""
-titleline += "######################################"
-titleline += "########################################"
-titleline += '\n'
-titleline += "#                                     "
-titleline += "                                       #"
-titleline += '\n'
-titleline += "#                      "
-titleline += "ZOModel: Zombie Outbreak Modeling"
-titleline += "                     #"
-titleline += '\n'
-titleline += "#                             "
-titleline += "By: Eric G. Kratz"
-titleline += "                              #"
-titleline += '\n'
-titleline += "#                              "
-titleline += "                                              #"
-titleline += '\n'
-titleline += "###############################################"
-titleline += "###############################"
-titleline += '\n'
-console.log(titleline)
+titleLine = ""
+titleLine += "######################################"
+titleLine += "########################################"
+titleLine += '\n'
+titleLine += "#                                     "
+titleLine += "                                       #"
+titleLine += '\n'
+titleLine += "#                      "
+titleLine += "ZOModel: Zombie Outbreak Modeling"
+titleLine += "                     #"
+titleLine += '\n'
+titleLine += "#                             "
+titleLine += "By: Eric G. Kratz"
+titleLine += "                              #"
+titleLine += '\n'
+titleLine += "#                              "
+titleLine += "                                              #"
+titleLine += '\n'
+titleLine += "###############################################"
+titleLine += "###############################"
+titleLine += '\n'
+console.log(titleLine)
 
 //Start calculations
-if ((ZomPer == "--help") || (ZomPer == "-h"))
+if ((zomPer == "--help") || (zomPer == "-h") ||
+   (isNaN(zomPer)) || (isNaN(fightPer)))
 {
   //Print help and exit
-  helptext = "Usage:"
-  helptext += '\n'
-  helptext += "  user:$ ZOMOdds ZombiePercent FighterPercent"
-  helptext += '\n'
-  console.log(helptext)
+  helpText = "Usage:"
+  helpText += '\n'
+  helpText += "  user:$ ZOMOdds ZombiePercent FighterPercent"
+  helpText += '\n'
+  console.log(helpText)
 }
 else
 {
   //Continue calculations
-  ZomPer = +ZomPer
+  zomPer = +zomPer
 
   //Check for errors
-  if (ZomPer > 100)
+  if (zomPer > 100)
   {
     console.log("Warning: Input cannot be larger than 100%")
-    WarnCheck = 1
-    ZomPer = 100
+    warnCheck = 1
+    zomPer = 100
   }
-  if (ZomPer < 0)
+  if (zomPer < 0)
   {
     console.log("Warning: Input cannot be less than 0%")
-    WarnCheck = 1
-    ZomPer = 0
+    warnCheck = 1
+    zomPer = 0
   }
-  if (FightPer > 100)
+  if (fightPer > 100)
   {
     console.log("Warning: Input cannot be larger than 100%")
-    WarnCheck = 1
-    FightPer = 100
+    warnCheck = 1
+    fightPer = 100
   }
-  if (FightPer < 0)
+  if (fightPer < 0)
   {
     console.log("Warning: Input cannot be less than 0%")
-    WarnCheck = 1
-    FightPer = 0
+    warnCheck = 1
+    fightPer = 0
   }
-  if (WarnCheck == 1)
+  if (warnCheck == 1)
   {
     console.log("")
   }
@@ -95,18 +96,18 @@ else
   //Print settings to the log
   console.log("Settings")
   console.log("--------")
-  console.log("  *Zombified humans: "+ZomPer+"%")
-  console.log("  *Survivors in the fight: "+FightPer+"%")
+  console.log("  *Zombified humans: "+zomPer+"%")
+  console.log("  *Survivors in the fight: "+fightPer+"%")
 
   //Estimate odds
-  NumZom = (ZomPer/(100.0-ZomPer))/(FightPer/100.0)
-  NumZom = Math.ceil(NumZom)
+  numZom = (zomPer/(100.0-zomPer))/(fightPer/100.0)
+  numZom = Math.ceil(numZom)
 
   //Print results
   console.log("")
   console.log("Results")
   console.log("-------")
-  console.log("  *Number of zombies each survivor needs to eliminate: "+NumZom)
+  console.log("  *Number of zombies each survivor needs to eliminate: "+numZom)
   console.log("")
 }
 

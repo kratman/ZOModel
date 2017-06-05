@@ -18,6 +18,7 @@
 var feedDays = process.argv[2]
 var deathPer = +process.argv[3]
 var numVamp = 0.0
+var numDays = 0
 var warnCheck = 0
 var titleLine = ""
 var helpText = ""
@@ -48,14 +49,15 @@ titleLine += '\n'
 console.log(titleLine)
 
 //Start calculations
-if ((ZomPer == "--help") || (ZomPer == "-h"))
+if ((feedDays == "--help") || (feedDays == "-h") ||
+   (isNaN(feedDays)) || (isNaN(deathPer)))
 {
   //Print help and exit
-  helptext = "Usage:"
-  helptext += '\n'
-  helptext += "  user:$ VOMSpread DaysBetweenFeeds PercentKilledVictims"
-  helptext += '\n'
-  console.log(helptext)
+  helpText = "Usage:"
+  helpText += '\n'
+  helpText += "  user:$ VOMSpread DaysBetweenFeeds PercentKilledVictims"
+  helpText += '\n'
+  console.log(helpText)
 }
 else
 {
@@ -66,22 +68,22 @@ else
   if (deathPer > 100)
   {
     console.log("Warning: Input cannot be larger than 100%")
-    WarnCheck = 1
+    warnCheck = 1
     deathPer = 100
   }
   if (deathPer < 0)
   {
     console.log("Warning: Input cannot be less than 0%")
-    WarnCheck = 1
+    warnCheck = 1
     deathPer = 0
   }
   if (feedDays < 0)
   {
     console.log("Warning: Input cannot be less than 0 days")
-    WarnCheck = 1
+    warnCheck = 1
     feedDays = 0
   }
-  if (WarnCheck == 1)
+  if (warnCheck == 1)
   {
     console.log("")
   }
@@ -89,18 +91,16 @@ else
   //Print settings to the log
   console.log("Settings")
   console.log("--------")
-  console.log("  *Zombified humans: "+ZomPer+"%")
-  console.log("  *Survivors in the fight: "+FightPer+"%")
+  console.log("  *Time between vampire feedings: "+feedDays+" days")
+  console.log("  *Percent of victims killed: "+deathPer+"%")
 
-  //Estimate odds
-  NumZom = (ZomPer/(100.0-ZomPer))/(FightPer/100.0)
-  NumZom = Math.ceil(NumZom)
+  //Calculate the number of days before vampires kill all humans
 
   //Print results
   console.log("")
   console.log("Results")
   console.log("-------")
-  console.log("  *Number of zombies each survivor needs to eliminate: "+NumZom)
+  console.log("  *All humans have become vampires in "+numDays+" days.")
   console.log("")
 }
 
