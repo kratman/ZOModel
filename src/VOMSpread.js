@@ -16,9 +16,12 @@
 
 //Initialize variables
 var feedDays = process.argv[2]
+var minDays = 0.1
 var deathPer = +process.argv[3]
+var maxDeathPer = 99.9
 var numVamp = 0.0
-var numDays = 0
+var numDays = 0.0
+var humanPop = 7000000000
 var warnCheck = 0
 var titleLine = ""
 var helpText = ""
@@ -62,14 +65,16 @@ if ((feedDays == "--help") || (feedDays == "-h") ||
 else
 {
   //Continue calculations
+  feedDays = +feedDays
+  deathPer = +deathPer
   numVamp = 1
 
   //Check for errors
-  if (deathPer > 100)
+  if (deathPer > maxDeathPer)
   {
-    console.log("Warning: Input cannot be larger than 100%")
+    console.log("Warning: Input cannot be larger than "+maxDeathPer+"%")
     warnCheck = 1
-    deathPer = 100
+    deathPer = maxDeathPer
   }
   if (deathPer < 0)
   {
@@ -79,7 +84,7 @@ else
   }
   if (feedDays < 0)
   {
-    console.log("Warning: Input cannot be less than 0 days")
+    console.log("Warning: Input cannot be less than "+minDays+" days")
     warnCheck = 1
     feedDays = 0
   }
@@ -95,6 +100,12 @@ else
   console.log("  *Percent of victims killed: "+deathPer+"%")
 
   //Calculate the number of days before vampires kill all humans
+  deathPer /= 100.0
+  while (numVamp < humanPop)
+  {
+    numVamp += Math.ceil(numVamp*(1.0-deathPer))
+    numDays += feedDays
+  }
 
   //Print results
   console.log("")

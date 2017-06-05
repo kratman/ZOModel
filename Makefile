@@ -26,7 +26,7 @@ JVASCPT=\/usr\/bin\/nodejs
 
 ### Compile rules for users and devs
 
-install:	title zomodd zombin zomlog zomapp compdone
+install:	title zomodd vomspread zombin zomlog zomapp compdone
 
 clean:	title delbin compdone
 
@@ -49,6 +49,21 @@ zomodd:
 	sed -i '/\/\*/,/\*\//d' ./bin/ZOMOdds; \
 	sed -i '/^$$/d' ./bin/ZOMOdds; \
 	chmod a+x ./bin/ZOMOdds; \
+	echo " [Complete]"
+
+vomspread: 
+	@echo ""; \
+	echo "### Making the VOMSpread executable ###"; \
+	mkdir -p bin; \
+	echo " Copying JavaScript code..."; \
+	cat ./src/VOMSpread.js > ./bin/VOMSpread; \
+	echo " Setting JS interpreter..."; \
+	sed -i 's/\/\/JAVASCRIPT/\#\!$(JVASCPT)/g' ./bin/VOMSpread; \
+	echo " Purging garbage..."; \
+	sed -i '/\/\//d' ./bin/VOMSpread; \
+	sed -i '/\/\*/,/\*\//d' ./bin/VOMSpread; \
+	sed -i '/^$$/d' ./bin/VOMSpread; \
+	chmod a+x ./bin/VOMSpread; \
 	echo " [Complete]"
 
 zombin:	
