@@ -8,10 +8,16 @@
 #NB: The installer for the lisp and JavaScript source code uses Linux shell
 #    commands (sed,chmod).
 
-### Compiler settings
+### C/C++ compiler settings
 
 CXX=g++
 CXXFLAGS=-static -fopenmp -O3
+LDFLAGS=-I./src/ -I./include/
+
+### Java compiler settings
+
+JAVAC=javac
+JAVAFLAGS=-d ./bin/
 
 ### Regular expression (sed) for lisp and JavaScript
 
@@ -23,6 +29,10 @@ JVASCPT=\/usr\/bin\/nodejs
 install:	title zomodd zombin zomlog zomapp compdone
 
 clean:	title delbin compdone
+
+### Combine settings
+
+FLAGSBIN=$(CXXFLAGS) $(LDFLAGS)
 
 ### Rules for building various parts of the code
 
@@ -45,7 +55,7 @@ zombin:
 	@echo ""; \
 	echo "### Compiling the ZOModel binary ###"; \
 	mkdir -p bin
-	$(CXX) $(CXXFLAGS) ./src/ZOModel.cpp -o ./bin/ZOModel
+	$(CXX) ./src/ZOModel.cpp -o ./bin/ZOModel $(FLAGSBIN)
 
 zomlog:	
 	@echo ""; \
@@ -65,7 +75,7 @@ zomlog:
 zomapp:	
 	@echo ""; \
 	echo "### Compiling the ZOModelApp ###"
-	javac ./src/ZOModelApp.java -d ./bin/
+	$(JAVAC) ./src/ZOModelApp.java $(JAVAFLAGS)
 
 title:	
 	@echo ""; \
