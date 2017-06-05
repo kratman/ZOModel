@@ -20,7 +20,7 @@ JVASCPT=\/usr\/bin\/nodejs
 
 ### Compile rules for users and devs
 
-install:	title zomodd zombin zomlog compdone
+install:	title zomodd zombin zomlog zomapp compdone
 
 clean:	title delbin compdone
 
@@ -61,6 +61,11 @@ zomlog:
 	sed -i '/^$$/d' ./bin/ZOMlog; \
 	chmod a+x ./bin/ZOMlog; \
 	echo " [Complete]"
+
+zomapp:	
+	@echo ""; \
+	echo "### Compiling the ZOModelApp ###"
+	javac ./src/ZOModelApp.java -d ./bin/
 
 title:	
 	@echo ""; \

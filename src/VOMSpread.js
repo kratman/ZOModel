@@ -60,32 +60,26 @@ if ((ZomPer == "--help") || (ZomPer == "-h"))
 else
 {
   //Continue calculations
-  ZomPer = +ZomPer
+  numVamp = 1
 
   //Check for errors
-  if (ZomPer > 100)
+  if (deathPer > 100)
   {
     console.log("Warning: Input cannot be larger than 100%")
     WarnCheck = 1
-    ZomPer = 100
+    deathPer = 100
   }
-  if (ZomPer < 0)
+  if (deathPer < 0)
   {
     console.log("Warning: Input cannot be less than 0%")
     WarnCheck = 1
-    ZomPer = 0
+    deathPer = 0
   }
-  if (FightPer > 100)
+  if (feedDays < 0)
   {
-    console.log("Warning: Input cannot be larger than 100%")
+    console.log("Warning: Input cannot be less than 0 days")
     WarnCheck = 1
-    FightPer = 100
-  }
-  if (FightPer < 0)
-  {
-    console.log("Warning: Input cannot be less than 0%")
-    WarnCheck = 1
-    FightPer = 0
+    feedDays = 0
   }
   if (WarnCheck == 1)
   {
