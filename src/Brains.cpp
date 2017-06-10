@@ -16,7 +16,7 @@
 
 #include "Undead.h"
 
-//Function definitions
+// Function definitions
 inline void PrintFancyTitle()
 {
   cout << '\n';
@@ -42,9 +42,9 @@ inline void PrintFancyTitle()
 
 inline void ZOMInput(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
 {
-  //Function to collect settings
+  // Function to collect settings
   cout << '\n';
-  //Read settings
+  // Read settings
   cout << "Initial population: ";
   cout << '\n';
   cin >> Plague.Pop;
@@ -66,14 +66,14 @@ inline void ZOMInput(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   cout << "Percent infected: ";
   cout << '\n';
   cin >> Plague.Iprob;
-  //Return to the simulation
+  // Return to the simulation
   cout << '\n';
   return;
 };
 
 void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
 {
-  //Function to check for nonsensical input
+  // Function to check for nonsensical input
   bool DoQuit = 0;
   if (Plague.Pop == 0)
   {
@@ -141,19 +141,19 @@ void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   cout << "Mercy probability: " << Plague.Mprob << '\n';
   cout << "Infected probability: " << Plague.Iprob << '\n';
   cout << '\n';
-  //Initialize the population as healthy humans
+  // Initialize the population as healthy humans
   double randnum;
-  for (int i=0;i<Plague.Pop;i++)
+  for (int i = 0; i < Plague.Pop; i++)
   {
     MeatBag tmp;
-    //Determine if the human is infected
+    // Determine if the human is infected
     randnum = (((double)rand())/((double)RAND_MAX));
-    tmp.Bitten = 0; //Initialize as false
+    tmp.Bitten = 0; // Initialize as false
     if (randnum < Plague.Iprob)
     {
       tmp.Bitten = 1;
     }
-    //Add human to the population
+    // Add human to the population
     SurvHumans.push_back(tmp);
   }
   return;
@@ -161,30 +161,30 @@ void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
 
 void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
 {
-  //Function for simulating the daily zombie attacks
+  // Function for simulating the daily zombie attacks
   double randnum;
   vector<MeatBag> TempHumans;
   vector<MeatBag> Survivors;
   TempHumans = SurvHumans;
   int NewZombies = 0;
-  //Ready... FIGHT!!!
+  // Ready... FIGHT!!!
   for (int z=0;z<Plague.Zombies;z++)
   {
-    //Pick a random human
+    // Pick a random human
     if (SurvHumans.size() == 0)
     {
       break;
     }
     int h = (rand()%SurvHumans.size());
-    //Check if the human loses
+    // Check if the human loses
     randnum = (((double)rand())/((double)RAND_MAX));
     if (randnum > Plague.Wprob)
     {
-      //Remove human
+      // Remove human
       Plague.Pop -= 1;
       SurvHumans.erase(SurvHumans.begin()+h);
       TempHumans.erase(TempHumans.begin()+h);
-      //Check for reanimation
+      // Check for reanimation
       randnum = (((double)rand())/((double)RAND_MAX));
       if (randnum > Plague.Eprob)
       {
@@ -194,17 +194,17 @@ void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
     else
     {
       NewZombies -= 1; //Remove a zombie
-      //Check if the human was bitten
+      // Check if the human was bitten
       randnum = (((double)rand())/((double)RAND_MAX));
       if (randnum < Plague.Bprob)
       {
-        //Confirm bite
+        // Confirm bite
         TempHumans[h].Bitten = 1;
       }
     }
   }
-  //Those about to die salute you
-  for (int i=0;i<SurvHumans.size();i++)
+  // Those about to die salute you
+  for (unsigned int i = 0; i < SurvHumans.size(); i++)
   {
     if (SurvHumans[i].Bitten)
     {
@@ -217,13 +217,13 @@ void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
     }
     else
     {
-      //Save bite information
+      // Save bite information
       MeatBag tmp;
       tmp = TempHumans[i];
       Survivors.push_back(tmp);
     }
   }
-  //Copy data and end the day
+  // Copy data and end the day
   Plague.Zombies += NewZombies;
   SurvHumans = Survivors;
   return;
@@ -231,7 +231,7 @@ void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
 
 inline void ZOMPrint(int& DayCount, ZOMSettings& Plague)
 {
-  //Function to print the current progress of the outbreak
+  // Function to print the current progress of the outbreak
   cout << " | Day: " << DayCount;
   cout << " | Humans: " << Plague.Pop;
   cout << " | Zombies: " << Plague.Zombies;

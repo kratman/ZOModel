@@ -20,15 +20,15 @@
 using namespace std;
 
 // Function declarations
-void PrintFancyTitle();
+inline void PrintFancyTitle();
 
-void ZOMInput(vector<MeatBag>&,ZOMSettings&);
+inline void ZOMInput(vector<MeatBag>&,ZOMSettings&);
 
 void ZOMErrorChecker(vector<MeatBag>&,ZOMSettings&);
 
 void ZOMUpdate(vector<MeatBag>&,ZOMSettings&);
 
-void ZOMPrint(int&,ZOMSettings&);
+inline void ZOMPrint(int&,ZOMSettings&);
 
 #endif
 

@@ -11,7 +11,7 @@
 ### C/C++ compiler settings
 
 CXX=g++
-CXXFLAGS=-static -fopenmp -O3
+CXXFLAGS=-static -fopenmp -O3 -Wall
 LDFLAGS=-I./src/ -I./include/
 
 ### Java compiler settings

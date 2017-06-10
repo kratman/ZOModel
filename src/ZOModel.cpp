@@ -11,29 +11,30 @@
 
 */
 
-//Header
+// Header files
+
 #include "Undead.h"
-#include "Brains.h"
+#include "Brains.cpp"
 
 int main()
 {
-  //Set random seed
-  srand((unsigned)time(0)); //Serial only random numbers
-  //End of section
+  // Set random seed
+  srand((unsigned)time(0)); // Serial only random numbers
+  // End of section
 
-  //Initialize variables
-  ZOMSettings Plague; //Statistics for the zombie infestation
-  vector<MeatBag> SurvHumans; //List of surviving humans
-  int DayCount = 0; //Counter for the days
-  //End of section
+  // Initialize variables
+  ZOMSettings Plague; // Statistics for the zombie infestation
+  vector<MeatBag> SurvHumans; // List of surviving humans
+  int DayCount = 0; // Counter for the days
+  // End of section
 
-  //Read input and check for errors
+  // Read input and check for errors
   PrintFancyTitle();
   ZOMInput(SurvHumans,Plague);
   ZOMErrorChecker(SurvHumans,Plague);
-  //End of section
+  // End of section
 
-  //Run simulation
+  // Run simulation
   ZOMPrint(DayCount,Plague);
   while (((Plague.Pop > 0) and (Plague.Zombies > 0)) or (DayCount == 0))
   {
@@ -41,9 +42,9 @@ int main()
     ZOMUpdate(SurvHumans,Plague);
     ZOMPrint(DayCount,Plague);
   }
-  //End of section
+  // End of section
 
-  //Epilogue
+  // Epilogue
   cout << '\n';
   cout << "The end?";
   cout << '\n';
@@ -54,9 +55,9 @@ int main()
     cout << '\n';
     cout << '\n';
   }
-  //End of section
+  // End of section
 
-  //Flush and exit
+  // Flush and exit
   cout.flush();
   return 0;
 };
