@@ -13,10 +13,11 @@
 
 #ifndef ZOM_BRAINS
 #define ZOM_BRAINS
+
 #include "Undead.h"
 
 //Function definitions
-void PrintFancyTitle()
+inline void PrintFancyTitle()
 {
   cout << '\n';
   cout << "#######################################";
@@ -39,7 +40,7 @@ void PrintFancyTitle()
   return;
 };
 
-void ZOMInput(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
+inline void ZOMInput(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
 {
   //Function to collect settings
   cout << '\n';
@@ -228,7 +229,7 @@ void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   return;
 };
 
-void ZOMPrint(int& DayCount, ZOMSettings& Plague)
+inline void ZOMPrint(int& DayCount, ZOMSettings& Plague)
 {
   //Function to print the current progress of the outbreak
   cout << " | Day: " << DayCount;
