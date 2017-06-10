@@ -23,7 +23,7 @@ int main()
   // End of section
 
   // Initialize variables
-  ZOMSettings Plague; // Statistics for the zombie infestation
+  ZOMSimSettings Plague; // Statistics for the zombie infestation
   vector<MeatBag> SurvHumans; // List of surviving humans
   int DayCount = 0; // Counter for the days
   // End of section

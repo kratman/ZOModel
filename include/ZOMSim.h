@@ -1,7 +1,9 @@
 #ifndef ZOM_SIM_HEADERS
 #define ZOM_SIM_HEADERS
 
-struct ZOMSettings
+// Data structures
+
+struct ZOMSimSettings
 {
   // General world statistics
   int Pop; // Human population

@@ -40,7 +40,7 @@ inline void PrintFancyTitle()
   return;
 };
 
-inline void ZOMInput(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
+inline void ZOMInput(vector<MeatBag>& SurvHumans, ZOMSimSettings& Plague)
 {
   // Function to collect settings
   cout << '\n';
@@ -71,7 +71,7 @@ inline void ZOMInput(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   return;
 };
 
-void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
+void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSimSettings& Plague)
 {
   // Function to check for nonsensical input
   bool DoQuit = 0;
@@ -159,7 +159,7 @@ void ZOMErrorChecker(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   return;
 };
 
-void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
+void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSimSettings& Plague)
 {
   // Function for simulating the daily zombie attacks
   double randnum;
@@ -229,7 +229,7 @@ void ZOMUpdate(vector<MeatBag>& SurvHumans, ZOMSettings& Plague)
   return;
 };
 
-inline void ZOMPrint(int& DayCount, ZOMSettings& Plague)
+inline void ZOMPrint(int& DayCount, ZOMSimSettings& Plague)
 {
   // Function to print the current progress of the outbreak
   cout << " | Day: " << DayCount;

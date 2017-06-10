@@ -10,6 +10,12 @@
 #include <vector>
 
 // Namespaces
+
 using namespace std;
+
+// Hard coded settings
+
+#define ZOM_MAX_PERCENT (100.0)
+#define ZOM_MIN_PERCENT (0.0)
 
 #endif
