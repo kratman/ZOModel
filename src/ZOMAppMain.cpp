@@ -7,28 +7,22 @@
 #                                                                            #
 ##############################################################################
 
- Data types, headers, and declarations for ZOModel.
+ ZOModel is licensed under GPLv3, for more information see GPL_LICENSE
 
 */
 
-#ifndef ZOM_HEADERS
-#define ZOM_HEADERS
+// ZOModel custom headers
 
 #include "ZOMApp.h"
 #include "ZOMSim.h"
+#include "ZOMLog.h"
+#include "ZOMOdds.h"
+#include "VOMSpread.h"
 
-using namespace std;
+// ZOModel library call for Java or Go interfaces
+void ZOMRunSim()
+{
 
-// Function declarations
-void PrintFancyTitle();
-
-void ZOMInput(vector<MeatBag>&,ZOMSettings&);
-
-void ZOMErrorChecker(vector<MeatBag>&,ZOMSettings&);
-
-void ZOMUpdate(vector<MeatBag>&,ZOMSettings&);
-
-void ZOMPrint(int&,ZOMSettings&);
-
-#endif
+  return;
+};
 
