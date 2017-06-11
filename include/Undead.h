@@ -23,13 +23,13 @@ using namespace std;
 
 inline void PrintFancyTitle();
 
-inline void ZOMInput(vector<MeatBag>&,ZOMSimSettings&);
+inline void ZOMPrint(ZOMSimSettings&);
 
-void ZOMErrorChecker(vector<MeatBag>&,ZOMSimSettings&);
+inline void ZOMInitRand(int);
 
-void ZOMUpdate(vector<MeatBag>&,ZOMSimSettings&);
+inline double ZOMRand();
 
-inline void ZOMPrint(int&,ZOMSimSettings&);
+inline int ZOMRandInt(int);
 
 #endif
 

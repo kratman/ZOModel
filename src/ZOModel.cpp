@@ -14,33 +14,32 @@
 // Header files
 
 #include "Undead.h"
+#include "ZOMSim.cpp"
 #include "Brains.cpp"
 
 int main()
 {
   // Set random seed
-  srand((unsigned)time(0)); // Serial only random numbers
+  ZOMInitRand((unsigned)time(0)); // Serial only random numbers
   // End of section
 
   // Initialize variables
-  ZOMSimSettings Plague; // Statistics for the zombie infestation
-  vector<MeatBag> SurvHumans; // List of surviving humans
-  int DayCount = 0; // Counter for the days
+  ZOMSimSettings zomPlague; // Statistics for the zombie infestation
   // End of section
 
   // Read input and check for errors
   PrintFancyTitle();
-  ZOMInput(SurvHumans,Plague);
-  ZOMErrorChecker(SurvHumans,Plague);
+  ZOMInput(zomPlague);
+  zomPlague.errorChecker();
   // End of section
 
   // Run simulation
-  ZOMPrint(DayCount,Plague);
-  while (((Plague.Pop > 0) and (Plague.Zombies > 0)) or (DayCount == 0))
+  ZOMPrint(zomPlague);
+  while (((zomPlague.getPop() > 0) and (zomPlague.getZom() > 0))
+         or (zomPlague.getDays() == 0))
   {
-    DayCount += 1;
-    ZOMUpdate(SurvHumans,Plague);
-    ZOMPrint(DayCount,Plague);
+    zomPlague.dailyUpdate();
+    ZOMPrint(zomPlague);
   }
   // End of section
 
@@ -49,7 +48,7 @@ int main()
   cout << "The end?";
   cout << '\n';
   cout << '\n';
-  if (Plague.Pop == 0)
+  if (zomPlague.getPop() == 0)
   {
     cout << "Yes. Everyone is dead...";
     cout << '\n';
