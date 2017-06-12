@@ -16,7 +16,7 @@ class ZOMSimSettings
     int pop_; // Human population
     int zombies_; // Zombie population
     int bitten_; // Number of bitten humans
-    int days_;
+    int days_; // Number of days since the outbreak
     double winProb_; // Probability that the human kills the zombie
     double eatProb_; // Probability that the zombie eats the human
     double biteProb_; // Probability that the human was bitten

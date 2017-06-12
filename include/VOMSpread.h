@@ -11,10 +11,20 @@
 
 struct VOMSpreadSettings
 {
-  double feedDays;
-  double deathPer;
-  double numDays;
-  double numVamp;
+  private:
+    // General world statistics
+    double feedDays_;
+    double deathPer_;
+    double numDays_;
+    double numVamp_;
+  public:
+    // Constructors
+    VOMSpreadSettings();
+    VOMSpreadSettings(double feed, double death);
+    // Destructor
+    ~VOMSpreadSettings();
+    // Functions
+    int runCalc();
 };
 
 #endif
