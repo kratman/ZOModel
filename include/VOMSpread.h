@@ -6,6 +6,7 @@
 #define VOM_HUMAN_POP (7000000000)
 #define VOM_MIN_DAYS (0.1)
 #define VOM_MAX_DEATH_PER (99.9)
+#define VOM_FLOAT_ONE (1.0)
 
 // Data structures
 
