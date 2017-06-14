@@ -17,6 +17,8 @@
 #include "ZOMSim.cpp"
 #include "Brains.cpp"
 
+// Command line interface main
+
 int main()
 {
   // Set random seed

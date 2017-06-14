@@ -27,6 +27,8 @@ using namespace std;
 
 inline void PrintFancyTitle();
 
+inline void ZOMInput(ZOMSimSettings&);
+
 inline void ZOMPrint(ZOMSimSettings&);
 
 inline void ZOMInitRand(int);
