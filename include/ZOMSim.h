@@ -1,6 +1,10 @@
 #ifndef ZOM_SIM_HEADERS
 #define ZOM_SIM_HEADERS
 
+// Custom header files
+
+#include "ZOMApp.h"
+
 // Data structures
 
 struct MeatBag

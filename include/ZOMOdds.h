@@ -1,6 +1,10 @@
 #ifndef ZOM_ODDS_HEADERS
 #define ZOM_ODDS_HEADERS
 
+// Custom header files
+
+#include "ZOMApp.h"
+
 // Data structures
 
 struct ZOMOddsSettings

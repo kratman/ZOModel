@@ -1,6 +1,7 @@
 // Header files
 
 #include "ZOMApp.h"
+#include "VOMSpread.h"
 
 // Constructors
 
@@ -20,7 +21,7 @@ VOMSpreadSettings::VOMSpreadSettings(double feed, double death)
   numVamp_ = 0.0;
 };
 
-ZOMOddsSettings::~ZOMOddsSettings()
+VOMSpreadSettings::~VOMSpreadSettings()
 {
   return;
 };
@@ -31,7 +32,7 @@ inline int VOMSpreadSettings::runCalc()
 {
   while (numVamp_ < VOM_HUMAN_POP)
   {
-    numVamp_ += ceil(numVamp*(VOM_FLOAT_ONE-deathPer_));
+    numVamp_ += ceil(numVamp_*(VOM_FLOAT_ONE-deathPer_));
     numDays_ += feedDays_;
   }
   return numDays_;

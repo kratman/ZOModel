@@ -14,8 +14,12 @@
 #ifndef ZOM_HEADERS
 #define ZOM_HEADERS
 
+// Custom header files
+
 #include "ZOMApp.h"
 #include "ZOMSim.h"
+
+// Namespaces
 
 using namespace std;
 

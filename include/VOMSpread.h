@@ -8,6 +8,10 @@
 #define VOM_MAX_DEATH_PER (99.9)
 #define VOM_FLOAT_ONE (1.0)
 
+// Custom header files
+
+#include "ZOMApp.h"
+
 // Data structures
 
 struct VOMSpreadSettings

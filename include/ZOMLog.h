@@ -6,6 +6,10 @@
 #define ZOM_LOG_COMP_SCALE (10000400)
 #define ZOM_LOG_APOC_CYC (1200000000)
 
+// Custom header files
+
+#include "ZOMApp.h"
+
 // Data structures
 
 

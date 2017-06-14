@@ -122,4 +122,4 @@ delbin:
 	echo ""; \
 	echo ""; \
 	echo "Removing executables..."; \
-	rm -rf ./bin
+	rm -rf ./bin ./lib
