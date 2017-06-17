@@ -67,7 +67,7 @@ void ZOMOddsSettings::printResults()
   cout << "--------" << '\n';
   cout << "  *Zombified humans: " << zomPer_;
   cout << "%" << '\n';
-  cout << "  *Survivors in the fight : " << fightPer_;
+  cout << "  *Survivors in the fight: " << fightPer_;
   cout << "%" << '\n';
   cout << '\n';
 

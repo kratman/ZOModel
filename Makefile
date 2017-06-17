@@ -13,7 +13,7 @@
 CXX=g++
 CXXFLAGS=-static -fopenmp -O3 -Wall
 INCFLAGS=-I./src/ -I./include/
-LDFLAGS=
+LDFLAGS=-static -o
 
 ### Java compiler settings
 
@@ -33,7 +33,7 @@ clean:	title delbin compdone
 
 ### Combine settings
 
-FLAGSBIN=$(CXXFLAGS) $(INCFLAGS) $(LDFLAGS)
+FLAGSBIN=$(CXXFLAGS) $(INCFLAGS)
 
 ### Rules for building various parts of the code
 
@@ -78,8 +78,8 @@ zombin:
 	$(CXX) -c ./src/ZOMOdds.cpp -o ./lib/ZOMOdds.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOModel.cpp -o ./lib/ZOModel.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOMSim.cpp -o ./lib/ZOMSim.a $(FLAGSBIN)
-	$(CXX) -o ./bin/ZOMAppTest ./lib/ZOMAppMain.a ./lib/Brains.a ./lib/ZOMSim.a ./lib/VOMSpread.a ./lib/ZOMOdds.a ./lib/ZOMLog.a
-	$(CXX) -o ./bin/ZOModel ./lib/ZOModel.a ./lib/Brains.a ./lib/ZOMSim.a
+	$(CXX) $(LDFLAGS) ./bin/ZOMAppTest ./lib/ZOMAppMain.a ./lib/Brains.a ./lib/ZOMSim.a ./lib/VOMSpread.a ./lib/ZOMOdds.a ./lib/ZOMLog.a
+	$(CXX) $(LDFLAGS) ./bin/ZOModel ./lib/ZOModel.a ./lib/Brains.a ./lib/ZOMSim.a
 
 zomlog:	
 	@echo ""; \
