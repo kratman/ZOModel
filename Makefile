@@ -77,6 +77,7 @@ zombin:
 	$(CXX) -c ./src/ZOMOdds.cpp -o ./lib/ZOMOdds.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOModel.cpp -o ./lib/ZOModel.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOMSim.cpp -o ./lib/ZOMSim.a $(FLAGSBIN)
+	$(CXX) -o ./bin/ZOMAppTest ./lib/ZOMAppMain.a ./lib/Brains.a ./lib/ZOMSim.a ./lib/VOMSpread.a ./lib/ZOMOdds.a
 	$(CXX) -o ./bin/ZOModel ./lib/ZOModel.a ./lib/Brains.a ./lib/ZOMSim.a
 
 zomlog:	

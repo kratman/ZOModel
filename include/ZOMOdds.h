@@ -34,7 +34,10 @@ struct ZOMOddsSettings
     // Destructor
     ~ZOMOddsSettings();
     // Functions
-    int runCalc();
+    void runCalc();
+    int getNumZom();
+    // Debug routines
+    void printResults();
 };
 
 #endif

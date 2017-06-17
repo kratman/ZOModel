@@ -25,6 +25,12 @@
 
 // Data structures
 
-
+class ZOMLogSettings
+{
+  public:
+    
+  private:
+    
+};
 
 #endif

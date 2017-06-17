@@ -18,6 +18,9 @@
 
 #include "ZOMApp.h"
 #include "ZOMSim.h"
+#include "ZOMLog.h"
+#include "ZOMOdds.h"
+#include "VOMSpread.h"
 
 // Namespaces
 
@@ -41,7 +44,8 @@ int ZOMRandInt(int);
 
 // Java and Go interface functions
 
-void ZOMRunSim();
+void ZOMRunSim(ZOMOddsSettings*,VOMSpreadSettings*,
+               ZOMSimSettings*,ZOMLogSettings*);
 
 #endif
 

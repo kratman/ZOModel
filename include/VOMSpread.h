@@ -42,7 +42,10 @@ struct VOMSpreadSettings
     // Destructor
     ~VOMSpreadSettings();
     // Functions
-    int runCalc();
+    void runCalc();
+    int getDays();
+    // Debug routines
+    void printResults();
 };
 
 #endif
