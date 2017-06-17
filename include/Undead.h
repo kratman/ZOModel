@@ -23,7 +23,7 @@
 
 using namespace std;
 
-// Function declarations
+// Input and output routines for the command line interface
 
 void PrintFancyTitle();
 
@@ -31,11 +31,17 @@ void ZOMInput(ZOMSimSettings&);
 
 void ZOMPrint(ZOMSimSettings&);
 
+// Wrappers for random number generators
+
 void ZOMInitRand(int);
 
 double ZOMRand();
 
 int ZOMRandInt(int);
+
+// Java and Go interface functions
+
+void ZOMRunSim();
 
 #endif
 

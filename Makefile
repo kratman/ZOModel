@@ -12,7 +12,8 @@
 
 CXX=g++
 CXXFLAGS=-static -fopenmp -O3 -Wall
-LDFLAGS=-I./src/ -I./include/
+INCFLAGS=-I./src/ -I./include/
+LDFLAGS=
 
 ### Java compiler settings
 
@@ -32,7 +33,7 @@ clean:	title delbin compdone
 
 ### Combine settings
 
-FLAGSBIN=$(CXXFLAGS) $(LDFLAGS)
+FLAGSBIN=$(CXXFLAGS) $(INCFLAGS) $(LDFLAGS)
 
 ### Rules for building various parts of the code
 
