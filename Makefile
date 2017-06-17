@@ -74,11 +74,12 @@ zombin:
 	$(CXX) -c ./src/Brains.cpp -o ./lib/Brains.a $(FLAGSBIN)
 	$(CXX) -c ./src/VOMSpread.cpp -o ./lib/VOMSpread.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOMAppMain.cpp -o ./lib/ZOMAppMain.a $(FLAGSBIN)
+	$(CXX) -c ./src/ZOMAppTest.cpp -o ./lib/ZOMAppTest.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOMLog.cpp -o ./lib/ZOMLog.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOMOdds.cpp -o ./lib/ZOMOdds.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOModel.cpp -o ./lib/ZOModel.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOMSim.cpp -o ./lib/ZOMSim.a $(FLAGSBIN)
-	$(CXX) $(LDFLAGS) ./bin/ZOMAppTest ./lib/ZOMAppMain.a ./lib/Brains.a ./lib/ZOMSim.a ./lib/VOMSpread.a ./lib/ZOMOdds.a ./lib/ZOMLog.a
+	$(CXX) $(LDFLAGS) ./bin/ZOMAppTest ./lib/ZOMAppTest.a ./lib/ZOMAppMain.a ./lib/Brains.a ./lib/ZOMSim.a ./lib/VOMSpread.a ./lib/ZOMOdds.a ./lib/ZOMLog.a
 	$(CXX) $(LDFLAGS) ./bin/ZOModel ./lib/ZOModel.a ./lib/Brains.a ./lib/ZOMSim.a
 
 zomlog:	

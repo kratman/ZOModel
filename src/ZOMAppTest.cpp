@@ -15,36 +15,22 @@
 
 #include "Undead.h"
 
-// ZOModel library call for Java or Go interfaces
+// Test command line interface routine
 
-void ZOMRunSim(ZOMOddsSettings* zomOdds, VOMSpreadSettings* vampSpread,
-               ZOMSimSettings* zomSim, ZOMLogSettings* zomLog)
+int main()
 {
-  // Run ZOMOdds simulation
-  if (zomOdds != NULL)
-  {
-    zomOdds->runCalc();
-  }
+  // Create test calculations
+  ZOMOddsSettings zomOdds(90.0,12.0);
+  VOMSpreadSettings vampSpread(7.0,90.0);
 
-  // Run VOMSpread simulation
-  if (vampSpread != NULL)
-  {
-    vampSpread->runCalc();
-  }
+  // Run simulations
+  ZOMRunSim(&zomOdds, &vampSpread, NULL, NULL);
 
-  // Run ZOModel simulation
-  if (zomSim != NULL)
-  {
-    
-  }
+  // Print results
+  zomOdds.printResults();
+  vampSpread.printResults();
 
-  // Run ZOMLog simulation
-  if (zomLog != NULL)
-  {
-    
-  }
-
-  // Return to the app
-  return;
+  //Exit
+  return 0;
 };
 
