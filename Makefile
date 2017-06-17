@@ -74,25 +74,26 @@ zombin:
 	$(CXX) -c ./src/Brains.cpp -o ./lib/Brains.a $(FLAGSBIN)
 	$(CXX) -c ./src/VOMSpread.cpp -o ./lib/VOMSpread.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOMAppMain.cpp -o ./lib/ZOMAppMain.a $(FLAGSBIN)
+	$(CXX) -c ./src/ZOMLog.cpp -o ./lib/ZOMLog.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOMOdds.cpp -o ./lib/ZOMOdds.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOModel.cpp -o ./lib/ZOModel.a $(FLAGSBIN)
 	$(CXX) -c ./src/ZOMSim.cpp -o ./lib/ZOMSim.a $(FLAGSBIN)
-	$(CXX) -o ./bin/ZOMAppTest ./lib/ZOMAppMain.a ./lib/Brains.a ./lib/ZOMSim.a ./lib/VOMSpread.a ./lib/ZOMOdds.a
+	$(CXX) -o ./bin/ZOMAppTest ./lib/ZOMAppMain.a ./lib/Brains.a ./lib/ZOMSim.a ./lib/VOMSpread.a ./lib/ZOMOdds.a ./lib/ZOMLog.a
 	$(CXX) -o ./bin/ZOModel ./lib/ZOModel.a ./lib/Brains.a ./lib/ZOMSim.a
 
 zomlog:	
 	@echo ""; \
-	echo "### Making the ZOMlog executable ###"; \
+	echo "### Making the ZOMLog executable ###"; \
 	mkdir -p bin; \
 	echo " Copying lisp code..."; \
-	cat ./src/ZOMlog.lisp > ./bin/ZOMlog; \
+	cat ./src/ZOMLog.lisp > ./bin/ZOMLog; \
 	echo " Setting lisp interpreter..."; \
-	sed -i 's/\;CLISP/\#\!$(LISP)/g' ./bin/ZOMlog; \
+	sed -i 's/\;CLISP/\#\!$(LISP)/g' ./bin/ZOMLog; \
 	echo " Purging garbage..."; \
-	sed -i '/\;/d' ./bin/ZOMlog; \
-	sed -i '/\#|/,/|\#/d' ./bin/ZOMlog; \
-	sed -i '/^$$/d' ./bin/ZOMlog; \
-	chmod a+x ./bin/ZOMlog; \
+	sed -i '/\;/d' ./bin/ZOMLog; \
+	sed -i '/\#|/,/|\#/d' ./bin/ZOMLog; \
+	sed -i '/^$$/d' ./bin/ZOMLog; \
+	chmod a+x ./bin/ZOMLog; \
 	echo " [Complete]"
 
 zomapp:	

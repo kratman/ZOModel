@@ -11,9 +11,6 @@
 
 */
 
-#ifndef ZOM_BRAINS
-#define ZOM_BRAINS
-
 #include "Undead.h"
 
 // Function definitions
@@ -108,6 +105,4 @@ void ZOMPrint(ZOMSimSettings& zomPlague)
   cout << '\n';
   return;
 };
-
-#endif
 

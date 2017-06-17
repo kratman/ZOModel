@@ -13,11 +13,9 @@ ZOModel: Zombie Outbreak Modeling Software
 ### Introduction
 
 This is a simple set of programs I wrote to simulate a zombie outbreak over
-time. This was just for fun and is not a realistic model.
-
-Currently, three different models are available in this repository. ZOMOdds
-performs a back of the envelope calculation of the number of zombies a human
-population needs to eliminate. ZOModel is designed to simulate small
+time. Currently, three different models are available in this repository.
+ZOMOdds performs a back of the envelope calculation of the number of zombies
+a human population needs to eliminate. ZOModel is designed to simulate small
 populations of humans and zombies (e.g. an infested town). ZOMlog is designed
 for large scale populations (e.g. infested countries and planets).
 

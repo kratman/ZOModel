@@ -1,3 +1,16 @@
+/*
+
+##############################################################################
+#                                                                            #
+#                      ZOModel: Zombie Outbreak Modeling                     #
+#                             By: Eric G. Kratz                              #
+#                                                                            #
+##############################################################################
+
+ ZOModel is licensed under GPLv3, for more information see GPL_LICENSE
+
+*/
+
 // Header files
 
 #include "ZOMApp.h"
@@ -58,8 +71,8 @@ void VOMSpreadSettings::printResults()
   cout << "Settings" << '\n';
   cout << "--------" << '\n';
   cout << "  *Time between vampire feedings: " << feedDays_;
-  cout << "days" << '\n';
-  cout << "  *Percent of victims killed: " << deathPer_;
+  cout << " days" << '\n';
+  cout << "  *Percent of victims killed: " << (ZOM_MAX_PERCENT*deathPer_);
   cout << "%" << '\n';
   cout << '\n';
 

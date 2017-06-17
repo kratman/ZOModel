@@ -1,3 +1,16 @@
+/*
+
+##############################################################################
+#                                                                            #
+#                      ZOModel: Zombie Outbreak Modeling                     #
+#                             By: Eric G. Kratz                              #
+#                                                                            #
+##############################################################################
+
+ ZOModel is licensed under GPLv3, for more information see GPL_LICENSE
+
+*/
+
 // Header files
 
 #include "Undead.h"
@@ -15,6 +28,7 @@ ZOMSimSettings::ZOMSimSettings()
   biteProb_ = 0.0;
   mercyProb_ = 0.0;
   infectProb_ = 0.0;
+  return;
 };
 
 ZOMSimSettings::ZOMSimSettings(int hum, int zom, double win, double eat,
