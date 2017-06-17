@@ -69,8 +69,14 @@ vomspread:
 zombin:	
 	@echo ""; \
 	echo "### Compiling the ZOModel binary ###"; \
-	mkdir -p bin
-	$(CXX) ./src/ZOModel.cpp -o ./bin/ZOModel $(FLAGSBIN)
+	mkdir -p bin lib
+	$(CXX) -c ./src/Brains.cpp -o ./lib/Brains.a $(FLAGSBIN)
+	$(CXX) -c ./src/VOMSpread.cpp -o ./lib/VOMSpread.a $(FLAGSBIN)
+	$(CXX) -c ./src/ZOMAppMain.cpp -o ./lib/ZOMAppMain.a $(FLAGSBIN)
+	$(CXX) -c ./src/ZOMOdds.cpp -o ./lib/ZOMOdds.a $(FLAGSBIN)
+	$(CXX) -c ./src/ZOModel.cpp -o ./lib/ZOModel.a $(FLAGSBIN)
+	$(CXX) -c ./src/ZOMSim.cpp -o ./lib/ZOMSim.a $(FLAGSBIN)
+	$(CXX) -o ./bin/ZOModel ./lib/ZOModel.a ./lib/Brains.a ./lib/ZOMSim.a
 
 zomlog:	
 	@echo ""; \

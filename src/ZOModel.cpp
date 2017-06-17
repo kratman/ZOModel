@@ -14,8 +14,8 @@
 // Header files
 
 #include "Undead.h"
-#include "ZOMSim.cpp"
-#include "Brains.cpp"
+//#include "ZOMSim.cpp"
+//#include "Brains.cpp"
 
 // Command line interface main
 

@@ -25,17 +25,17 @@ using namespace std;
 
 // Function declarations
 
-inline void PrintFancyTitle();
+void PrintFancyTitle();
 
-inline void ZOMInput(ZOMSimSettings&);
+void ZOMInput(ZOMSimSettings&);
 
-inline void ZOMPrint(ZOMSimSettings&);
+void ZOMPrint(ZOMSimSettings&);
 
-inline void ZOMInitRand(int);
+void ZOMInitRand(int);
 
-inline double ZOMRand();
+double ZOMRand();
 
-inline int ZOMRandInt(int);
+int ZOMRandInt(int);
 
 #endif
 

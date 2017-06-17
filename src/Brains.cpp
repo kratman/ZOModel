@@ -18,23 +18,23 @@
 
 // Function definitions
 
-inline void ZOMInitRand(int seed)
+void ZOMInitRand(int seed)
 {
   srand(seed); // Serial only random numbers
   return;
 };
 
-inline double ZOMRand()
+double ZOMRand()
 {
   return (((double)rand())/((double)RAND_MAX));
 };
 
-inline int ZOMRandInt(int range)
+int ZOMRandInt(int range)
 {
   return (rand()%range);
 };
 
-inline void PrintFancyTitle()
+void PrintFancyTitle()
 {
   cout << '\n';
   cout << "#######################################";
@@ -57,7 +57,7 @@ inline void PrintFancyTitle()
   return;
 };
 
-inline void ZOMInput(ZOMSimSettings& zomPlague)
+void ZOMInput(ZOMSimSettings& zomPlague)
 {
   // Temporary variables
   int initPop;
@@ -99,7 +99,7 @@ inline void ZOMInput(ZOMSimSettings& zomPlague)
   return;
 };
 
-inline void ZOMPrint(ZOMSimSettings& zomPlague)
+void ZOMPrint(ZOMSimSettings& zomPlague)
 {
   // Function to print the current progress of the outbreak
   cout << " | Day: " << zomPlague.getDays();

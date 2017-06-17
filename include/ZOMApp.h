@@ -1,3 +1,16 @@
+/*
+
+##############################################################################
+#                                                                            #
+#                      ZOModel: Zombie Outbreak Modeling                     #
+#                             By: Eric G. Kratz                              #
+#                                                                            #
+##############################################################################
+
+ Data types, headers, and declarations for ZOModel.
+
+*/
+
 #ifndef ZOM_APP_HEADERS
 #define ZOM_APP_HEADERS
 
