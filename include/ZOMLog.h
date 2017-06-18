@@ -27,10 +27,29 @@
 
 class ZOMLogSettings
 {
-  public:
-    
   private:
-    
+    double humPop_; // Human population
+    double zomPop_; // Zombie population
+    double months_; // Simulation time in months
+    double popRate_; // Yearly population growth rate
+    double winProb_; // Probability that a human beats a zombe
+    double infRate_; // Yearly infection rate
+    double merProb_; // Probability that the dead are prevented from turning
+    double eroRate_; // Yearly rate of zombie destruction due to nature
+  public:
+    // Constructors
+    ZOMLogSettings();
+    ZOMLogSettings(double initHum, double initZom, double simYears,
+                   double popRate, double winProb, double infRate,
+                   double merProb, double eroRate);
+    // Destructors
+    ~ZOMLogSettings();
+    // Functions
+    double getHumPop();
+    double getZomPop();
+    void runCalc();
+    // Debug routines
+    void printResults();
 };
 
 #endif

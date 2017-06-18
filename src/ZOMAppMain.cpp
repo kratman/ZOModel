@@ -41,7 +41,7 @@ void ZOMRunSim(ZOMOddsSettings* zomOdds, VOMSpreadSettings* vampSpread,
   // Run ZOMLog simulation
   if (zomLog != NULL)
   {
-    
+    zomLog->runCalc();
   }
 
   // Return to the app

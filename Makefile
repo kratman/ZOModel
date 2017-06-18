@@ -10,7 +10,7 @@
 
 ### C/C++ compiler settings
 
-CXX=g++
+CXX=clang++
 CXXFLAGS=-static -fopenmp -O3 -Wall
 INCFLAGS=-I./src/ -I./include/
 LDFLAGS=-static -o

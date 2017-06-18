@@ -16,7 +16,9 @@
 
 // Standard libraries
 
-#include <omp.h>
+#ifdef _OPENMP
+  #include <omp.h>
+#endif
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
@@ -31,5 +33,6 @@ using namespace std;
 
 #define ZOM_MAX_PERCENT (100.0)
 #define ZOM_MIN_PERCENT (0.0)
+#define ZOM_MONTHS_PER_YEAR (12)
 
 #endif
