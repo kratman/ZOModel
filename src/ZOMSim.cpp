@@ -19,15 +19,15 @@
 
 ZOMSimSettings::ZOMSimSettings()
 {
-  pop_ = 0;
-  zombies_ = 0;
-  bitten_ = 0;
-  days_ = 0;
-  winProb_ = 0.0;
-  eatProb_ = 0.0;
-  biteProb_ = 0.0;
-  mercyProb_ = 0.0;
-  infectProb_ = 0.0;
+  pop_ = ZOM_INT_ZERO;
+  zombies_ = ZOM_INT_ZERO;
+  bitten_ = ZOM_INT_ZERO;
+  days_ = ZOM_INT_ZERO;
+  winProb_ = ZOM_DOUBLE_ZERO;
+  eatProb_ = ZOM_DOUBLE_ZERO;
+  biteProb_ = ZOM_DOUBLE_ZERO;
+  mercyProb_ = ZOM_DOUBLE_ZERO;
+  infectProb_ = ZOM_DOUBLE_ZERO;
   return;
 };
 
@@ -37,8 +37,8 @@ ZOMSimSettings::ZOMSimSettings(int hum, int zom, double win, double eat,
   // Initialize variables
   pop_ = hum;
   zombies_ = zom;
-  bitten_ = 0;
-  days_ = 0;
+  bitten_ = ZOM_INT_ZERO;
+  days_ = ZOM_INT_ZERO;
   winProb_ = win;
   eatProb_ = eat;
   biteProb_ = bite;
@@ -47,18 +47,18 @@ ZOMSimSettings::ZOMSimSettings(int hum, int zom, double win, double eat,
 
   // Initialize the human population
   double randnum;
-  for (int i = 0; i < pop_; i++)
+  for (int i = ZOM_INT_ZERO; i < pop_; i++)
   {
     MeatBag tmp;
     // Determine if the human is infected
     randnum = ZOMRand();
     if (randnum < infectProb_)
     {
-      tmp.bitten = 1;
+      tmp.bitten = true;
     }
     else
     {
-      tmp.bitten = 0;
+      tmp.bitten = false;
     }
     // Add human to the population
     survHumans_.push_back(tmp);
@@ -91,37 +91,37 @@ int ZOMSimSettings::getDays()
 void ZOMSimSettings::errorChecker()
 {
   // Function to check for nonsensical input
-  bool doQuit = 0;
-  if (pop_ < 0)
+  bool doQuit = false;
+  if (pop_ < ZOM_INT_ZERO)
   {
     cout << "Negative humans? Do you know how numbers work?";
     cout << '\n';
     doQuit = 1;
   }
-  if (zombies_ < 0)
+  if (zombies_ < ZOM_INT_ZERO)
   {
     cout << "Negative zombies? Do you know how numbers work?";
     cout << '\n';
     doQuit = 1;
   }
-  if (winProb_ <= 0.0)
+  if (winProb_ <= ZOM_DOUBLE_ZERO)
   {
     cout << "Humans cannot win any fights?!?!";
     cout << '\n';
     cout << "Running that type of simulation is brutal and pointless...";
     cout << '\n';
-    doQuit = 1;
+    doQuit = true;
   }
-  if ((winProb_ > 1) or (eatProb_ > 1) or
-     (biteProb_ > 1) or (mercyProb_ > 1))
+  if ((winProb_ > ZOM_DOUBLE_ONE) or (eatProb_ > ZOM_DOUBLE_ONE) or
+     (biteProb_ > ZOM_DOUBLE_ONE) or (mercyProb_ > ZOM_DOUBLE_ONE))
   {
     cout << "Probabilities cannot be greater than 1.";
     cout << '\n';
     cout << "You should take some math classes...";
     cout << '\n';
   }
-  if ((winProb_ < 0) or (eatProb_ < 0) or
-     (biteProb_ < 0) or (mercyProb_ < 0))
+  if ((winProb_ < ZOM_DOUBLE_ZERO) or (eatProb_ < ZOM_DOUBLE_ZERO) or
+     (biteProb_ < ZOM_DOUBLE_ZERO) or (mercyProb_ < ZOM_DOUBLE_ZERO))
   {
     cout << "Probabilities cannot be less than 0.";
     cout << '\n';
@@ -155,12 +155,12 @@ void ZOMSimSettings::dailyUpdate()
   vector<MeatBag> tempHumans;
   vector<MeatBag> survivors;
   tempHumans = survHumans_;
-  int newZombies = 0;
+  int newZombies = ZOM_INT_ZERO;
   // Ready... FIGHT!!!
-  for (int z = 0; z < zombies_ ; z++)
+  for (int z = ZOM_INT_ZERO; z < zombies_ ; z++)
   {
     // Pick a random human
-    if (survHumans_.size() == 0)
+    if (survHumans_.size() == ZOM_INT_ZERO)
     {
       break;
     }
@@ -177,7 +177,7 @@ void ZOMSimSettings::dailyUpdate()
       randNum = ZOMRand();
       if (randNum > eatProb_)
       {
-        newZombies += 1;
+        newZombies += ZOM_INT_ONE;
       }
     }
     else
@@ -188,20 +188,20 @@ void ZOMSimSettings::dailyUpdate()
       if (randNum < biteProb_)
       {
         // Confirm bite
-        tempHumans[h].bitten = 1;
+        tempHumans[h].bitten = true;
       }
     }
   }
   // Those about to die salute you
-  for (unsigned int i = 0; i < survHumans_.size(); i++)
+  for (unsigned int i = ZOM_INT_ZERO; i < survHumans_.size(); i++)
   {
     if (survHumans_[i].bitten)
     {
-      pop_ -= 1;
+      pop_ -= ZOM_INT_ONE;
       randNum = ZOMRand();
       if (randNum > mercyProb_)
       {
-        newZombies += 1;
+        newZombies += ZOM_INT_ONE;
       }
     }
     else

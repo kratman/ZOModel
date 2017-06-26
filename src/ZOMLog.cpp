@@ -20,14 +20,14 @@
 ZOMLogSettings::ZOMLogSettings()
 {
   // Initialize all variables
-  humPop_ = 0.0;
-  zomPop_ = 0.0;
-  months_ = 0.0;
-  popRate_ = 0.0;
-  winProb_ = 0.0;
-  infRate_ = 0.0;
-  merProb_ = 0.0;
-  eroRate_ = 0.0;
+  humPop_ = ZOM_DOUBLE_ZERO;
+  zomPop_ = ZOM_DOUBLE_ZERO;
+  months_ = ZOM_DOUBLE_ZERO;
+  popRate_ = ZOM_DOUBLE_ZERO;
+  winProb_ = ZOM_DOUBLE_ZERO;
+  infRate_ = ZOM_DOUBLE_ZERO;
+  merProb_ = ZOM_DOUBLE_ZERO;
+  eroRate_ = ZOM_DOUBLE_ZERO;
   return;
 };
 
@@ -44,9 +44,9 @@ ZOMLogSettings::ZOMLogSettings(double initHum, double initZom,
   months_ = simYears * ZOM_MONTHS_PER_YEAR;
 
   // Calculate the monthly population growth rate
-  popRate_ = 1.0 + popRate;
-  popRate_ = pow(popRate_, (1.0 / ZOM_MONTHS_PER_YEAR));
-  popRate_ -= 1.0;
+  popRate_ = ZOM_DOUBLE_ONE + popRate;
+  popRate_ = pow(popRate_, (ZOM_DOUBLE_ONE / ZOM_MONTHS_PER_YEAR));
+  popRate_ -= ZOM_DOUBLE_ONE;
 
   // Save the probabilities
   winProb_ = winProb;
@@ -79,7 +79,75 @@ double ZOMLogSettings::getZomPop()
 
 void ZOMLogSettings::runCalc()
 {
-  
+  // Statistics counters
+  double maxHum = ZOM_DOUBLE_ZERO;
+  double maxZom = ZOM_DOUBLE_ZERO;
+  double extMonths = ZOM_DOUBLE_ZERO;
+
+  // Flags
+  bool endApoc = false;
+  bool secondApoc = false;
+
+  for (unsigned int m = ZOM_INT_ZERO; ((m < months_) && (endApoc == false));
+       m++)
+  {
+    // Update statistics
+    maxHum = max(humPop_, maxHum);
+    maxZom = max(zomPop_, maxZom);
+    if (humPop_ > ZOM_DOUBLE_ZERO)
+    {
+      extMonths = (double)m;
+    }
+
+    // Check if all humans and zombies have died
+    if ((humPop_ < ZOM_LOG_MIN_POP) && (zomPop_ < ZOM_LOG_MIN_POP))
+    {
+      endApoc = true;
+    }
+
+    // Save the current population sizes
+    double newHumPop = humPop_;
+    double newZomPop = zomPop_;
+
+    // Update human population
+    newHumPop += popRate_ * humPop_;
+    newHumPop -= (humPop_ * humPop_ * popRate_) / ZOM_LOG_COMP_SCALE;
+    newHumPop -= (ZOM_DOUBLE_ONE - winProb_) * zomPop_;
+    newHumPop -= (infRate_ * humPop_);
+
+    // Update zombie population
+    if (humPop_ > ZOM_LOG_MIN_POP)
+    {
+      newZomPop += zomPop_ * (ZOM_DOUBLE_ONE - winProb_)
+                   * (ZOM_DOUBLE_ONE - merProb_);
+      newZomPop += humPop_ * infRate_ * (ZOM_DOUBLE_ONE - merProb_);
+      newZomPop -= winProb_ * zomPop_;
+    }
+    newZomPop -= eroRate_ * zomPop_;
+
+    // Check for a second apocalypse
+    if (secondApoc)
+    {
+      newHumPop = ZOM_DOUBLE_ZERO;
+      newZomPop *= ZOM_LOG_SEC_APOC_SCALE;
+    }
+
+    // Prevent impossible populations
+    if (newHumPop < ZOM_LOG_MIN_POP)
+    {
+      newHumPop = ZOM_DOUBLE_ZERO;
+    }
+    if (newZomPop < ZOM_LOG_MIN_POP)
+    {
+      newZomPop = ZOM_DOUBLE_ZERO;
+    }
+
+    // Save new populations
+    humPop_ = newHumPop;
+    zomPop_ = newZomPop;
+  }
+
+  // Return to the app
   return;
 };
 

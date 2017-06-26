@@ -18,6 +18,8 @@
 
 #define ZOM_LOG_COMP_SCALE (10000400)
 #define ZOM_LOG_APOC_CYC (1200000000)
+#define ZOM_LOG_MIN_POP (0.001)
+#define ZOM_LOG_SEC_APOC_SCALE (0.1)
 
 // Custom header files
 
@@ -32,7 +34,7 @@ class ZOMLogSettings
     double zomPop_; // Zombie population
     double months_; // Simulation time in months
     double popRate_; // Yearly population growth rate
-    double winProb_; // Probability that a human beats a zombe
+    double winProb_; // Probability that a human beats a zombie
     double infRate_; // Yearly infection rate
     double merProb_; // Probability that the dead are prevented from turning
     double eroRate_; // Yearly rate of zombie destruction due to nature

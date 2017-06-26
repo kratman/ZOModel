@@ -11,7 +11,7 @@
 ### C/C++ compiler settings
 
 CXX=clang++
-CXXFLAGS=-static -fopenmp -O3 -Wall
+CXXFLAGS=-static -O3 -Wall
 INCFLAGS=-I./src/ -I./include/
 LDFLAGS=-static -o
 

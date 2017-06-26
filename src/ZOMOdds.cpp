@@ -13,16 +13,15 @@
 
 // Header files
 
-#include "ZOMApp.h"
-#include "ZOMOdds.h"
+#include "Undead.h"
 
 // Constructors
 
 ZOMOddsSettings::ZOMOddsSettings()
 {
-  zomPer_ = 0.0;
-  fightPer_ = 0.0;
-  numZom_ = 0.0;
+  zomPer_ = ZOM_DOUBLE_ZERO;
+  fightPer_ = ZOM_DOUBLE_ZERO;
+  numZom_ = ZOM_DOUBLE_ZERO;
   return;
 };
 
@@ -30,7 +29,7 @@ ZOMOddsSettings::ZOMOddsSettings(double zombie, double fight)
 {
   zomPer_ = zombie;
   fightPer_ = fight;
-  numZom_ = 0.0;
+  numZom_ = ZOM_DOUBLE_ZERO;
   return;
 };
 
