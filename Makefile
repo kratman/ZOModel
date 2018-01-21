@@ -15,11 +15,6 @@ CXXFLAGS=-static -O3 -Wall
 INCFLAGS=-I./src/ -I./include/
 LDFLAGS=-static -o
 
-### Java compiler settings
-
-JAVAC=javac
-JAVAFLAGS=-d ./bin/
-
 ### Regular expression (sed) for lisp and JavaScript
 
 LISP=\/usr\/bin\/clisp
@@ -27,7 +22,7 @@ JVASCPT=\/usr\/bin\/nodejs
 
 ### Compile rules for users and devs
 
-install:	title zomodd vomspread zombin zomlog zomapp compdone
+install:	title zomodd vomspread zombin zomlog compdone
 
 clean:	title delbin compdone
 
@@ -96,11 +91,6 @@ zomlog:
 	sed -i '/^$$/d' ./bin/ZOMLog; \
 	chmod a+x ./bin/ZOMLog; \
 	echo " [Complete]"
-
-zomapp:	
-	@echo ""; \
-	echo "### Compiling the ZOModelApp ###"
-	$(JAVAC) ./src/ZOModelApp.java $(JAVAFLAGS)
 
 title:	
 	@echo ""; \
