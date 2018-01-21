@@ -36,7 +36,8 @@ need to be modified accordingly.
 
 ### ZOModelApp
 
-An Android app and Java GUI are currently in development...
+An Android application and desktop GUI for simulating zombie outbreaks.
+The graphical functionality is still a work in progress.
 
 ### ZOMOdds: Approximate number of zombies each survior must eliminate
 
