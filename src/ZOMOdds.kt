@@ -1,55 +1,35 @@
 
-package ZOMOdds
+package src
 
-class ZOMOdds {
-    var zomPer
-    var fightPer
-    var numZom
-
-    init {
-        zomPer = 0
-        fightPer = 0
-        numZom = 0
-    }
-
-    constructor(zombie: Double, fight: Double) {
-        zomPer = zombie
-        fightPer = fight
-    }
+class ZOMOdds(zombie: Double, fight: Double) {
+    private var zomPer: Double = zombie
+    private var fightPer: Double = fight
+    private var numZom: Double = 0.0
 
     fun runCalc() {
+        val maxPercent = 100.0
         numZom = zomPer
-        numZom /= (ZOM_MAX_PERCENT - zomPer)
-        numZom /= (fightPer / 100.0)
-        numZom = ceil(numZom)
+        numZom /= (maxPercent - zomPer)
+        numZom /= (fightPer / maxPercent)
+        numZom = kotlin.math.ceil(numZom)
     }
 
-    fun getNumZom(): Int {
-        return numZOm as Int
+    private fun getNumZom(): Int {
+        return numZom.toInt()
     }
 
     fun printResults() {
-        print('\n')
-        print("--- ZOMOdds test ---" + '\n')
+        println("")
+        println("--- ZOMOdds test ---")
+        println("")
+        println("Settings")
+        println("--------")
+        println("  *Zombified humans: " + zomPer.toString() + "%")
+        println("  *Survivors in the fight: " + fightPer.toString() + "%")
+        println("")
 
-        print('\n')
-        print("Settings" + '\n')
-        print("--------" + '\n')
-        print("  *Zombified humans: " + zomPer)
-        print("%" + '\n')
-        print("  *Survivors in the fight: " + fightPer)
-        print("%" + '\n')
-        print('\n')
-
-        print("Results" + '\n')
-        print("-------" + '\n')
-        print("  *Number of zombies each survivor needs to eliminate: ")
-        print(getNumZom() + '\n' + '\n')
+        println("Results")
+        println("-------")
+        println("  *Number of zombies each survivor needs to eliminate: " + getNumZom().toString())
     }
-}
-
-fun main() {
-    odds = ZomOdds(90.0, 50.0)
-    odds.runCalc()
-    odds.printResults()
 }
