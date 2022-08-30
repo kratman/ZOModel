@@ -24,8 +24,8 @@ class ZOMOdds(zombie: Double, fight: Double) {
         println("")
         println("Settings")
         println("--------")
-        println("  *Zombified humans: " + zomPer.toString() + "%")
-        println("  *Survivors in the fight: " + fightPer.toString() + "%")
+        println("  *Zombified humans: $zomPer%")
+        println("  *Survivors in the fight: $fightPer%")
         println("")
 
         println("Results")
