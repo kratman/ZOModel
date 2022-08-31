@@ -1,0 +1,6 @@
+
+package src
+
+class ZOMLog {
+
+}
