@@ -21,21 +21,20 @@ class ZOMLog(initHum: Double, initZom: Double,
     private val ZOM_LOG_MIN_POP: Double = 0.001
     private val ZOM_LOG_SEC_APOC_SCALE: Double = 0.1
 
-    fun runCalc() {
-        // Statistics counters
-        var maxHum = 0.0
-        var maxZom = 0.0
-        var extMonths = 0
+    private var lengthOfExistence: Int = 0
+    private var maxHumans: Double = 0.0
+    private var maxZombies: Double = 0.0
 
-        // Flags
-        var secondApoc = false
+    fun runCalc() {
+        // Initialize random number generator
+        var randomNumber = 0
 
         for (m in 0..months) {
             // Update statistics
-            maxHum = kotlin.math.max(humPop, maxHum);
-            maxZom = kotlin.math.max(zomPop, maxZom);
+            maxHumans = kotlin.math.max(humPop, maxHumans)
+            maxZombies = kotlin.math.max(zomPop, maxZombies)
             if (humPop > 0.0) {
-                extMonths = m
+                lengthOfExistence = m
             }
 
             // Check if all humans and zombies have died
@@ -62,7 +61,7 @@ class ZOMLog(initHum: Double, initZom: Double,
             newZomPop -= eroRate * zomPop
 
             // Check for a second apocalypse (random int is needed)
-            if (secondApoc) {
+            if (randomNumber == ZOM_LOG_APOC_CYC) {
                 newHumPop = 0.0
                 newZomPop *= ZOM_LOG_SEC_APOC_SCALE
             }
