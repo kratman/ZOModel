@@ -84,7 +84,7 @@ class ZOMLog(initHum: Double, initZom: Double,
         println("Settings")
         println("--------")
         println("  *Simulation length: $months months")
-        println("  *Population growth rate: $growthRate%")
+        println("  *Monthly population growth rate: $growthRate")
         println("  *Probability that humans defeat zombies: $winRate")
         println("  *Probability that human show mercy to the infected: $mercyRate")
         println("  *Monthly natural zombie disease infection rate: $infectRate")
