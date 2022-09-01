@@ -348,7 +348,7 @@
 (format t "~%")
 ; Print blank line
 (format t "~%")
-; Print human extiction date if the world ended
+; Print human extinction date if the world ended
 (if (< hpop 0.001)
   (format t " Humans survived for "))
 (if (< hpop 0.001)
