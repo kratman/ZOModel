@@ -12,34 +12,19 @@ ZOModel: Zombie Outbreak Modeling Software
 
 ### Introduction
 
-This is a simple set of programs I wrote to simulate a zombie outbreak over
+This is a simple program written to simulate a zombie outbreak over
 time. Currently, three different models are available in this repository.
 ZOMOdds performs a back of the envelope calculation of the number of zombies
 a human population needs to eliminate. ZOModel is designed to simulate small
-populations of humans and zombies (e.g. an infested town). ZOMlog is designed
+populations of humans and zombies (e.g. an infested town). ZOMLog is designed
 for large scale populations (e.g. infested countries and planets).
-
-Recommended packages:
-```
- ZOMOdds: nodejs
- ZOModel: OpenMP
- ZOMlog: clisp
-```
-
-To install,
-```
-user:$ make install
-```
-
-If OpenMP, nodejs, and/or clisp are not installed, then the Makefile will
-need to be modified accordingly.
 
 ### ZOModelApp
 
 An Android application and desktop GUI for simulating zombie outbreaks.
 The graphical functionality is still a work in progress.
 
-### ZOMOdds: Approximate number of zombies each survior must eliminate
+### ZOMOdds: Approximate number of zombies each survivor must eliminate
 
 #### Input
 
@@ -48,7 +33,7 @@ ZOMOdds requires two command line arguments:
 -Percent of the population that was zombified
 -Percent of the survivors that can fight
 ```
-The executable does not prompt users for these numbers. Instead the numbers
+The executable does not prompt users for these numbers. Instead, the numbers
 must be given as command line arguments.
 ```
  user:$ ZOMOdds ZombiePercent FighterPercent
@@ -58,6 +43,24 @@ must be given as command line arguments.
 
 ZOMOdds performs a back of the envelope calculation to estimate the number
 of zombies each survivor has to eliminate.
+
+### VOMSpread: Approximate number of days until the population is entirely vampires
+
+VOMSpread requires two command line arguments:
+```
+-Number of days a vampire goes without feeding
+-Fraction of victims which die before turning into vampires
+```
+The executable does not prompt users for these numbers. Instead, the numbers
+must be given as command line arguments.
+```
+ user:$ VOMSpread feedDays deathFraction
+```
+
+#### Rules of the game
+
+VOMSpread performs a back of the envelope calculation to estimate the number
+of days until vampires turn all humans into vampires.
 
 ### ZOModel: Model for zombie outbreaks in small populations
 
@@ -90,11 +93,11 @@ from reanimating after death.
 
 The simulation continues until either all humans or all zombies are dead.
 
-### ZOMlog: Zombie logistics map for large scale outbreaks
+### ZOMLog: Zombie logistics map for large scale outbreaks
 
 #### Input
 
-ZOMlog requests only a handful of parameters to track the zombie outbreak:
+ZOMLog requests only a handful of parameters to track the zombie outbreak:
 ```
 -hpop => Initial human population
 -zpop => Initial zombie population
@@ -123,10 +126,10 @@ rates.
 
 #### Rules of the game
 
-While ZOModel favors the zombies by making humans defensive, ZOMlog favors
+While ZOModel favors the zombies by making humans defensive, ZOMLog favors
 the humans by including a population growth rate. The logistics model also
 includes human-human, human-nature, and zombie-nature interactions. The goal
-of ZOMlog is to simulate the coexistence of humans and zombies.
+of ZOMLog is to simulate the coexistence of humans and zombies.
 
 Each month the populations of humans and zombies are updated. The
 simulation continues until the time runs out or both populations reach
