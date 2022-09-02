@@ -1,6 +1,6 @@
 package src
 
-class ZOModel() {
+class ZOModel {
     private var humans: Int = 0 // Human population
     private var zombies: Int = 0 // Zombie population
     private var bitten: Int = 0 // Number of bitten humans
