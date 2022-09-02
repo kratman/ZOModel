@@ -24,12 +24,17 @@ class ZOModel {
         infectProb = infect
     }
 
-    private fun dailyUpdate() {
-
-    }
-
     private fun printHeader() {
-
+        if (printToScreen) {
+            println("")
+            println("###############################################################################")
+            println("#                                                                             #")
+            println("#                      ZOModel: Zombie Outbreak Modeling                      #")
+            println("#                                                                             #")
+            println("###############################################################################")
+            println("")
+            println("")
+        }
     }
 
     private fun errorChecker() {
@@ -38,8 +43,13 @@ class ZOModel {
 
     private fun printProgress() {
         if (printToScreen) {
-            println("")
+            println(" | Day: $days | Humans: $humans | Zombies: $zombies")
         }
+    }
+
+    private fun dailyUpdate() {
+        days += 1
+        humans = 0
     }
 
     fun runCalc() {
