@@ -88,9 +88,43 @@ class ZOModel : Brains() {
         }
     }
 
+    private fun randomFloat() : Double {
+        return 0.0
+    }
+
     private fun dailyUpdate() {
-        days += 1
-        humans = 0
+        var biteList = MutableList(humans) {false}
+        var risen = 0
+        // Ready... FIGHT!!!
+        for (z in 0..zombies) {
+            if (humans <= 0) {
+                break
+            }
+            var human = (0..humans).random()
+            if (randomFloat() > winProb) {
+                humans--
+                biteList.removeAt(human)
+                if (randomFloat() > eatProb) {
+                    risen++
+                }
+            } else {
+                risen--
+                if (randomFloat() < biteProb) {
+                    biteList[human] = true
+                }
+            }
+        }
+        // Those about to die salute you
+        for (victim in biteList) {
+            if (victim) {
+                humans--
+                if (randomFloat() > mercyProb) {
+                    risen++
+                }
+            }
+        }
+        zombies = kotlin.math.max(zombies + risen, 0)
+        days++
     }
 
     private fun simulation() {
