@@ -163,11 +163,11 @@ class ZOModel : Brains() {
             printHeader()
         }
         errorChecker()
-        if (printToScreen) {
-            println("Simulation")
-            println("--------")
-        }
         if (!quitSimulation) {
+            if (printToScreen) {
+                println("Simulation")
+                println("--------")
+            }
             simulation()
         }
     }
