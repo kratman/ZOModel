@@ -7,8 +7,6 @@
 #                                                                            #
 ##############################################################################
 
- ZOModel is licensed under GPLv3, for more information see GPL_LICENSE
-
 */
 
 //Initialize variables
