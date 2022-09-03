@@ -27,12 +27,12 @@ class VOMSpread(feed: Int, death: Double) : Brains() {
         printHeader()
         println("VOMSpread Settings")
         println("--------")
-        println("  *Time between vampire feedings: $feedDays")
-        println("  *Percent of victims killed: " + getDeathRate() +"%")
+        println("  * Time between vampire feedings: $feedDays")
+        println("  * Percent of victims killed: " + getDeathRate() +"%")
         println("")
 
         println("Results")
         println("-------")
-        println("  *All humans have become vampires in $days")
+        println("  * All humans have become vampires in $days")
     }
 }

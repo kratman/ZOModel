@@ -22,12 +22,12 @@ class ZOMOdds(zombie: Double, fight: Double) : Brains() {
         printHeader()
         println("ZOMOdds Settings")
         println("--------")
-        println("  *Zombified humans: $zomPer%")
-        println("  *Survivors in the fight: $fightPer%")
+        println("  * Zombified humans: $zomPer%")
+        println("  * Survivors in the fight: $fightPer%")
         println("")
 
         println("Results")
         println("-------")
-        println("  *Number of zombies each survivor needs to eliminate: " + getNumZom().toString())
+        println("  * Number of zombies each survivor needs to eliminate: " + getNumZom().toString())
     }
 }

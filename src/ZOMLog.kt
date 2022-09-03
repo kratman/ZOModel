@@ -81,27 +81,27 @@ class ZOMLog(initHum: Double, initZom: Double,
         printHeader()
         println("ZOMLog Settings")
         println("--------")
-        println("  *Simulation length: $months months")
-        println("  *Monthly population growth rate: $growthRate")
-        println("  *Probability that humans defeat zombies: $winRate")
-        println("  *Probability that human show mercy to the infected: $mercyRate")
-        println("  *Monthly natural zombie disease infection rate: $infectRate")
-        println("  *Monthly natural erosion rate for zombies: $eroRate")
+        println("  * Simulation length: $months months")
+        println("  * Monthly population growth rate: $growthRate")
+        println("  * Probability that humans defeat zombies: $winRate")
+        println("  * Probability that human show mercy to the infected: $mercyRate")
+        println("  * Monthly natural zombie disease infection rate: $infectRate")
+        println("  * Monthly natural erosion rate for zombies: $eroRate")
         println("")
 
         println("Results")
         println("-------")
         if (humPop < minimumPopulation) {
-            println("  *Humans survived for $lengthOfExistence months")
+            println("  * Humans survived for $lengthOfExistence months")
             if (secondApocalypse) {
-                println("  *Extinction due to asteroid impact.")
+                println("  * Extinction due to asteroid impact.")
             } else {
-                println("  *Extinction due to zombie apocalypse.")
+                println("  * Extinction due to zombie apocalypse.")
             }
         }
-        println("  *Largest number of humans (in thousands): $maxHumans")
-        println("  *Largest number of zombies (in thousands): $maxZombies")
-        println("  *Final number of humans (in thousands): $humPop")
-        println("  *Final number of zombies (in thousands): $zomPop")
+        println("  * Largest number of humans (in thousands): $maxHumans")
+        println("  * Largest number of zombies (in thousands): $maxZombies")
+        println("  * Final number of humans (in thousands): $humPop")
+        println("  * Final number of zombies (in thousands): $zomPop")
     }
 }
