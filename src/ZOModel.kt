@@ -27,6 +27,24 @@ class ZOModel : Brains() {
         infectProb = infect
     }
 
+    fun promptForInput() {
+        println("Initial population:")
+        humans = readln().toInt()
+        println("Initial zombies:")
+        zombies = readln().toInt()
+        println("Prob. that a human will win a fight:")
+        winProb = readln().toDouble()
+        println("Prob. that a zombie is super-hungry:")
+        eatProb = readln().toDouble()
+        println("Prob. that a human gets bitten:")
+        biteProb = readln().toDouble()
+        println("Mercy probability:")
+        mercyProb = readln().toDouble()
+        println("Percent infected:")
+        infectProb = readln().toDouble()
+        println("")
+    }
+
     fun togglePrinting() {
         printToScreen = !printToScreen
     }
@@ -98,7 +116,7 @@ class ZOModel : Brains() {
             if (humans <= 0) {
                 break
             }
-            val human = (0..humans).random()
+            val human = (0 until humans).random()
             if (Random.nextDouble() > winProb) {
                 humans--
                 biteList.removeAt(human)
