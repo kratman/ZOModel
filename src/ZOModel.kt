@@ -1,6 +1,6 @@
 package src
 
-class ZOModel {
+class ZOModel : Brains() {
     private var humans: Int = 0 // Human population
     private var zombies: Int = 0 // Zombie population
     private var days: Int = 0 // Number of days since the outbreak
@@ -11,7 +11,7 @@ class ZOModel {
     private var infectProb: Double = 0.0 // Initial infection fraction
     private var quitSimulation: Boolean = false // Avoids simulating erroneous input
 
-    private val printToScreen: Boolean = true
+    private var printToScreen: Boolean = false
 
     fun initializeSimulation(hum: Int, zom: Int, win: Double, eat: Double,
                              bite: Double, mercy: Double, infect: Double) {
@@ -24,17 +24,8 @@ class ZOModel {
         infectProb = infect
     }
 
-    private fun printHeader() {
-        if (printToScreen) {
-            println("")
-            println("###############################################################################")
-            println("#                                                                             #")
-            println("#                      ZOModel: Zombie Outbreak Modeling                      #")
-            println("#                                                                             #")
-            println("###############################################################################")
-            println("")
-            println("")
-        }
+    fun togglePrinting() {
+        printToScreen = !printToScreen
     }
 
     private fun errorChecker() {
@@ -60,15 +51,17 @@ class ZOModel {
         printProgress()
     }
 
-    fun runCalc() {
-        printHeader()
+    override fun runCalc() {
+        if (printToScreen) {
+            printHeader()
+        }
         errorChecker()
         if (!quitSimulation) {
             simulation()
         }
     }
 
-    fun printResults() {
+    override fun printResults() {
         println("")
         println("The end?")
         println("")

@@ -1,12 +1,12 @@
 
 package src
 
-class ZOMOdds(zombie: Double, fight: Double) {
+class ZOMOdds(zombie: Double, fight: Double) : Brains() {
     private var zomPer: Double = zombie
     private var fightPer: Double = fight
     private var numZom: Double = 0.0
 
-    fun runCalc() {
+    override fun runCalc() {
         val maxPercent = 100.0
         numZom = zomPer
         numZom /= (maxPercent - zomPer)
@@ -18,11 +18,9 @@ class ZOMOdds(zombie: Double, fight: Double) {
         return numZom.toInt()
     }
 
-    fun printResults() {
-        println("")
-        println("--- ZOMOdds test ---")
-        println("")
-        println("Settings")
+    override fun printResults() {
+        printHeader()
+        println("ZOMOdds Settings")
         println("--------")
         println("  *Zombified humans: $zomPer%")
         println("  *Survivors in the fight: $fightPer%")

@@ -1,7 +1,7 @@
 
 package src
 
-class VOMSpread(feed: Int, death: Double) {
+class VOMSpread(feed: Int, death: Double) : Brains() {
     private var feedDays: Int = feed
     private var deathRate: Double = death / 100.0
     private var days: Int = 0
@@ -9,7 +9,7 @@ class VOMSpread(feed: Int, death: Double) {
 
     private var worldPopulation: Double = 7000000000.0
 
-    fun runCalc() {
+    override fun runCalc() {
         days = 0
         vampires = 1.0
         while (vampires < worldPopulation)
@@ -23,11 +23,9 @@ class VOMSpread(feed: Int, death: Double) {
         return (100.0 * deathRate)
     }
 
-    fun printResults() {
-        println("")
-        println("--- VOMSpread test ---")
-        println("")
-        println("Settings")
+    override fun printResults() {
+        printHeader()
+        println("VOMSpread Settings")
         println("--------")
         println("  *Time between vampire feedings: $feedDays")
         println("  *Percent of victims killed: " + getDeathRate() +"%")

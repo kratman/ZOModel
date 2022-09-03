@@ -6,7 +6,7 @@ import kotlin.math.pow
 class ZOMLog(initHum: Double, initZom: Double,
              simYears: Int, popRate: Double,
              winProb: Double, infRate: Double,
-             merProb: Double, erosion: Double) {
+             merProb: Double, erosion: Double) : Brains() {
     private var humPop: Double = initHum
     private var zomPop: Double = initZom
     private var months: Int = 12 * simYears
@@ -26,7 +26,7 @@ class ZOMLog(initHum: Double, initZom: Double,
     private var maxHumans: Double = 0.0
     private var maxZombies: Double = 0.0
 
-    fun runCalc() {
+    override fun runCalc() {
         for (m in 0..months) {
             // Update statistics
             maxHumans = kotlin.math.max(humPop, maxHumans)
@@ -77,11 +77,9 @@ class ZOMLog(initHum: Double, initZom: Double,
         }
     }
 
-    fun printResults() {
-        println("")
-        println("--- ZOMLog test ---")
-        println("")
-        println("Settings")
+    override fun printResults() {
+        printHeader()
+        println("ZOMLog Settings")
         println("--------")
         println("  *Simulation length: $months months")
         println("  *Monthly population growth rate: $growthRate")
