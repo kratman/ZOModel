@@ -98,7 +98,7 @@ class ZOModel : Brains() {
             if (humans <= 0) {
                 break
             }
-            var human = (0..humans).random()
+            val human = (0..humans).random()
             if (Random.nextDouble() > winProb) {
                 humans--
                 biteList.removeAt(human)
