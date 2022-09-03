@@ -111,8 +111,15 @@ class ZOModel : Brains() {
     private fun dailyUpdate() {
         var biteList = MutableList(humans) {false}
         var risen = 0
+        // Mark humans as infected
+        if (days == 0) {
+            val infected = kotlin.math.min((humans.toDouble() * infectProb).toInt(), humans)
+            for (i in 0 until infected) {
+                biteList[i] = true
+            }
+        }
         // Ready... FIGHT!!!
-        for (z in 0..zombies) {
+        for (z in 0 until zombies) {
             if (humans <= 0) {
                 break
             }
