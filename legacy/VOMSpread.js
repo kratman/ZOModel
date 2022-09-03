@@ -1,6 +1,3 @@
-// The line below should say JAVASCRIPT and is used to place the interpreter
-//JAVASCRIPT
-
 /*
 
 ##############################################################################
