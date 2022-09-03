@@ -28,19 +28,19 @@ class ZOModel : Brains() {
     }
 
     fun promptForInput() {
-        println("Initial population:")
+        println("Initial human population:")
         humans = readln().toInt()
-        println("Initial zombies:")
+        println("Initial zombie population:")
         zombies = readln().toInt()
-        println("Prob. that a human will win a fight:")
+        println("Probability that a human will win a fight against a zombie:")
         winProb = readln().toDouble()
-        println("Prob. that a zombie is super-hungry:")
+        println("Probability that a zombie is super-hungry:")
         eatProb = readln().toDouble()
-        println("Prob. that a human gets bitten:")
+        println("Probability that a human gets bitten by a zombie:")
         biteProb = readln().toDouble()
-        println("Mercy probability:")
+        println("Probability that the infected are shown mercy:")
         mercyProb = readln().toDouble()
-        println("Percent infected:")
+        println("Fraction infected at the beginning:")
         infectProb = readln().toDouble()
         println("")
     }
