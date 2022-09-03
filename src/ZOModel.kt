@@ -1,6 +1,8 @@
 
 package src
 
+import kotlin.random.Random
+
 class ZOModel : Brains() {
     private var humans: Int = 0 // Human population
     private var zombies: Int = 0 // Zombie population
@@ -88,10 +90,6 @@ class ZOModel : Brains() {
         }
     }
 
-    private fun randomFloat() : Double {
-        return 0.0
-    }
-
     private fun dailyUpdate() {
         var biteList = MutableList(humans) {false}
         var risen = 0
@@ -101,15 +99,15 @@ class ZOModel : Brains() {
                 break
             }
             var human = (0..humans).random()
-            if (randomFloat() > winProb) {
+            if (Random.nextDouble() > winProb) {
                 humans--
                 biteList.removeAt(human)
-                if (randomFloat() > eatProb) {
+                if (Random.nextDouble() > eatProb) {
                     risen++
                 }
             } else {
                 risen--
-                if (randomFloat() < biteProb) {
+                if (Random.nextDouble() < biteProb) {
                     biteList[human] = true
                 }
             }
@@ -118,7 +116,7 @@ class ZOModel : Brains() {
         for (victim in biteList) {
             if (victim) {
                 humans--
-                if (randomFloat() > mercyProb) {
+                if (Random.nextDouble() > mercyProb) {
                     risen++
                 }
             }
@@ -128,7 +126,7 @@ class ZOModel : Brains() {
     }
 
     private fun simulation() {
-        while (((humans > 0) && (zombies > 0)) && (days == 0)) {
+        while (((humans > 0) && (zombies > 0)) || (days == 0)) {
             printProgress()
             dailyUpdate()
         }
