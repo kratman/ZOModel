@@ -128,25 +128,26 @@ class ZOModel : Brains() {
             val human = (0 until humans).random()
             if (Random.nextDouble() > winProb) {
                 humans--
-                theBitten.remove(human)
+                if (theBitten.contains(human)) {
+                    theBitten.remove(human)
+                }
                 if (Random.nextDouble() > eatProb) {
                     risen++
                 }
             } else {
                 risen--
                 if (Random.nextDouble() < biteProb) {
-                    theBitten[human] = true
+                    theBitten.putIfAbsent(human, true)
                 }
             }
         }
+        println("Size of bitten: " + theBitten.size)
         // Those about to die salute you
-        if (humans > 0) {
-            for (victim in theBitten.keys) {
-                if (true == theBitten[victim]) {
-                    humans--
-                    if (Random.nextDouble() > mercyProb) {
-                        risen++
-                    }
+        for ((_, bitten) in theBitten) {
+            if (bitten) {
+                humans--
+                if (Random.nextDouble() > mercyProb) {
+                    risen++
                 }
             }
         }
