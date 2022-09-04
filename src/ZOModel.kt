@@ -111,40 +111,42 @@ class ZOModel : Brains() {
     }
 
     private fun dailyUpdate() {
-        val biteList = MutableList(humans) {false}
+        val theBitten: MutableMap<Int, Boolean> = mutableMapOf()
         var risen = 0
         // Mark humans as infected
         if (days == 0) {
             val infected = kotlin.math.min(((infectProb * humans.toDouble()).toInt()), humans)
             for (i in 0 until infected) {
-                biteList[i] = true
+                theBitten[i] = true
             }
         }
         // Ready... FIGHT!!!
         for (z in 0 until zombies) {
-            if (humans <= 0) {
+            if (humans == 0) {
                 break
             }
             val human = (0 until humans).random()
             if (Random.nextDouble() > winProb) {
                 humans--
-                biteList.removeAt(human)
+                theBitten.remove(human)
                 if (Random.nextDouble() > eatProb) {
                     risen++
                 }
             } else {
                 risen--
                 if (Random.nextDouble() < biteProb) {
-                    biteList[human] = true
+                    theBitten[human] = true
                 }
             }
         }
         // Those about to die salute you
-        for (victim in biteList) {
-            if (victim) {
-                humans--
-                if (Random.nextDouble() > mercyProb) {
-                    risen++
+        if (humans > 0) {
+            for (victim in theBitten.keys) {
+                if (true == theBitten[victim]) {
+                    humans--
+                    if (Random.nextDouble() > mercyProb) {
+                        risen++
+                    }
                 }
             }
         }
