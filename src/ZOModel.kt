@@ -6,15 +6,15 @@ import kotlin.random.Random
 class ZOModel : Brains() {
     private var humans: Int = 0 // Human population
     private var zombies: Int = 0 // Zombie population
-    private var days: Int = 0 // Number of days since the outbreak
     private var winProb: Double = 0.0 // Probability that the human kills the zombie
     private var eatProb: Double = 0.0 // Probability that the zombie eats the human
     private var biteProb: Double = 0.0 // Probability that the human was bitten
     private var mercyProb: Double = 0.0 // Probability for mercy
     private var infectProb: Double = 0.0 // Initial infection fraction
-    private var quitSimulation: Boolean = false // Avoids simulating erroneous input
 
-    private var printToScreen: Boolean = false
+    private var days: Int = 0 // Number of days since the outbreak
+    private var quitSimulation: Boolean = false // Avoids simulating erroneous input
+    private var printToScreen: Boolean = false // Toggle the command line interface
 
     fun initializeSimulation(hum: Int, zom: Int, win: Double, eat: Double,
                              bite: Double, mercy: Double, infect: Double) {
@@ -28,21 +28,23 @@ class ZOModel : Brains() {
     }
 
     fun promptForInput() {
-        println("Initial human population:")
-        humans = readln().toInt()
-        println("Initial zombie population:")
-        zombies = readln().toInt()
-        println("Probability that a human will win a fight against a zombie:")
-        winProb = readln().toDouble()
-        println("Probability that a zombie is super-hungry:")
-        eatProb = readln().toDouble()
-        println("Probability that a human gets bitten by a zombie:")
-        biteProb = readln().toDouble()
-        println("Probability that the infected are shown mercy:")
-        mercyProb = readln().toDouble()
-        println("Fraction infected at the beginning:")
-        infectProb = readln().toDouble()
-        println("")
+        if (printToScreen) {
+            println("Initial human population:")
+            humans = readln().toInt()
+            println("Initial zombie population:")
+            zombies = readln().toInt()
+            println("Probability that a human will win a fight against a zombie:")
+            winProb = readln().toDouble()
+            println("Probability that a zombie is super-hungry:")
+            eatProb = readln().toDouble()
+            println("Probability that a human gets bitten by a zombie:")
+            biteProb = readln().toDouble()
+            println("Probability that the infected are shown mercy:")
+            mercyProb = readln().toDouble()
+            println("Fraction infected at the beginning:")
+            infectProb = readln().toDouble()
+            println("")
+        }
     }
 
     fun togglePrinting() {
