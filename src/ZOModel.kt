@@ -111,7 +111,7 @@ class ZOModel : Brains() {
     }
 
     private fun dailyUpdate() {
-        val theBitten: MutableMap<Int, Boolean> = mutableMapOf()
+        val theBitten = MutableList(humans) {false}
         var risen = 0
         // Mark humans as infected
         if (days == 0) {
@@ -128,23 +128,20 @@ class ZOModel : Brains() {
             val human = (0 until humans).random()
             if (Random.nextDouble() > winProb) {
                 humans--
-                if (theBitten.contains(human)) {
-                    theBitten.remove(human)
-                }
+                theBitten.removeAt(human)
                 if (Random.nextDouble() > eatProb) {
                     risen++
                 }
             } else {
                 risen--
                 if (Random.nextDouble() < biteProb) {
-                    theBitten.putIfAbsent(human, true)
+                    theBitten[human] = true
                 }
             }
         }
-        println("Size of bitten: " + theBitten.size)
         // Those about to die salute you
-        for ((_, bitten) in theBitten) {
-            if (bitten) {
+        for (victim in theBitten) {
+            if (victim) {
                 humans--
                 if (Random.nextDouble() > mercyProb) {
                     risen++
