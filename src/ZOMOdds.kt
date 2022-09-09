@@ -1,10 +1,20 @@
 
 package src
 
-class ZOMOdds(zombie: Double, fight: Double) : Brains() {
-    private var zomPer: Double = zombie
-    private var fightPer: Double = fight
+class ZOMOdds() : Brains() {
+    private var zomPer: Double = 0.0
+    private var fightPer: Double = 0.0
     private var numZom: Double = 0.0
+
+    constructor(zombie: Double, fight: Double) : this() {
+        zomPer = zombie
+        fightPer = fight
+        numZom = 0.0
+    }
+
+    override fun promptForInput() {
+
+    }
 
     override fun runCalc() {
         val maxPercent = 100.0

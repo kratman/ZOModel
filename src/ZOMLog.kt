@@ -3,18 +3,15 @@ package src
 
 import kotlin.math.pow
 
-class ZOMLog(initHum: Double, initZom: Double,
-             simYears: Int, popRate: Double,
-             winProb: Double, infRate: Double,
-             merProb: Double, erosion: Double) : Brains() {
-    private var humPop: Double = initHum
-    private var zomPop: Double = initZom
-    private var months: Int = 12 * simYears
-    private var growthRate: Double = (1.0 + (popRate / 100.0)).pow((1.0 / 12.0)) - 1.0
-    private var winRate: Double = winProb / 100.0
-    private var mercyRate: Double = merProb / 100.0
-    private var infectRate: Double = infRate / (12.0 * 100.0)
-    private var eroRate: Double = erosion / (12.0 * 100.0)
+class ZOMLog() : Brains() {
+    private var humPop: Double = 0.0
+    private var zomPop: Double = 0.0
+    private var months: Int = 0
+    private var growthRate: Double = 0.0
+    private var winRate: Double = 0.0
+    private var mercyRate: Double = 0.0
+    private var infectRate: Double = 0.0
+    private var eroRate: Double = 0.0
 
     private val minimumPopulation: Double = 0.001
     private val cooperationScale: Double = 10000400.0
@@ -25,6 +22,24 @@ class ZOMLog(initHum: Double, initZom: Double,
     private var lengthOfExistence: Int = 0
     private var maxHumans: Double = 0.0
     private var maxZombies: Double = 0.0
+
+    constructor(initHum: Double, initZom: Double,
+                simYears: Int, popRate: Double,
+                winProb: Double, infRate: Double,
+                merProb: Double, erosion: Double) : this() {
+        humPop = initHum
+        zomPop = initZom
+        months = 12 * simYears
+        growthRate = (1.0 + (popRate / 100.0)).pow((1.0 / 12.0)) - 1.0
+        winRate = winProb / 100.0
+        mercyRate = merProb / 100.0
+        infectRate = infRate / (12.0 * 100.0)
+        eroRate = erosion / (12.0 * 100.0)
+    }
+
+    override fun promptForInput() {
+
+    }
 
     override fun runCalc() {
         for (m in 0..months) {

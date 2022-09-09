@@ -1,13 +1,22 @@
 
 package src
 
-class VOMSpread(feed: Int, death: Double) : Brains() {
-    private var feedDays: Int = feed
-    private var deathRate: Double = death / 100.0
+class VOMSpread() : Brains() {
+    private var feedDays: Int = 0
+    private var deathRate: Double = 0.0
     private var days: Int = 0
     private var vampires: Double = 0.0
 
     private var worldPopulation: Double = 7000000000.0
+
+    constructor(feed: Int, death: Double) : this() {
+        feedDays = feed
+        deathRate = death / 100.0
+    }
+
+    override fun promptForInput() {
+
+    }
 
     override fun runCalc() {
         days = 0

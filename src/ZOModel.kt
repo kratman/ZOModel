@@ -3,7 +3,7 @@ package src
 
 import kotlin.random.Random
 
-class ZOModel : Brains() {
+class ZOModel() : Brains() {
     private var humans: Int = 0 // Human population
     private var zombies: Int = 0 // Zombie population
     private var winProb: Double = 0.0 // Probability that the human kills the zombie
@@ -14,10 +14,9 @@ class ZOModel : Brains() {
 
     private var days: Int = 0 // Number of days since the outbreak
     private var quitSimulation: Boolean = false // Avoids simulating erroneous input
-    private var printToScreen: Boolean = false // Toggle the command line interface
 
-    fun initializeSimulation(hum: Int, zom: Int, win: Double, eat: Double,
-                             bite: Double, mercy: Double, infect: Double) {
+    constructor(hum: Int, zom: Int, win: Double, eat: Double,
+                bite: Double, mercy: Double, infect: Double): this() {
         humans = hum
         zombies = zom
         winProb = win
@@ -27,7 +26,7 @@ class ZOModel : Brains() {
         infectProb = infect
     }
 
-    fun promptForInput() {
+    override fun promptForInput() {
         if (printToScreen) {
             println("Initial human population:")
             humans = readln().toInt()
@@ -45,10 +44,6 @@ class ZOModel : Brains() {
             infectProb = readln().toDouble()
             println("")
         }
-    }
-
-    fun togglePrinting() {
-        printToScreen = !printToScreen
     }
 
     private fun errorChecker() {

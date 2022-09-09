@@ -2,6 +2,8 @@
 package src
 
 abstract class Brains {
+    protected var printToScreen: Boolean = false // Toggle the command line interface
+
     protected fun printHeader() {
         println("")
         println("###############################################################################")
@@ -13,7 +15,13 @@ abstract class Brains {
         println("")
     }
 
+    fun togglePrinting() {
+        printToScreen = !printToScreen
+    }
+
     abstract fun runCalc()
 
     abstract fun printResults()
+
+    abstract fun promptForInput()
 }
