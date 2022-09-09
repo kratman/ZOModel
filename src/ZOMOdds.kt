@@ -13,7 +13,12 @@ class ZOMOdds() : Brains() {
     }
 
     override fun promptForInput() {
-
+        if (printToScreen) {
+            println("Percent of the population turned:")
+            zomPer = readln().toDouble()
+            println("Percent of the population capable of fighting:")
+            fightPer = readln().toDouble()
+        }
     }
 
     override fun runCalc() {

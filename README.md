@@ -33,11 +33,6 @@ ZOMOdds requires two command line arguments:
 -Percent of the population that was zombified
 -Percent of the survivors that can fight
 ```
-The executable does not prompt users for these numbers. Instead, the numbers
-must be given as command line arguments.
-```
- user:$ ZOMOdds ZombiePercent FighterPercent
-```
 
 #### Rules of the game
 
@@ -50,11 +45,6 @@ VOMSpread requires two command line arguments:
 ```
 -Number of days a vampire goes without feeding
 -Fraction of victims which die before turning into vampires
-```
-The executable does not prompt users for these numbers. Instead, the numbers
-must be given as command line arguments.
-```
- user:$ VOMSpread feedDays deathFraction
 ```
 
 #### Rules of the game

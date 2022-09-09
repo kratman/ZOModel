@@ -15,7 +15,12 @@ class VOMSpread() : Brains() {
     }
 
     override fun promptForInput() {
-
+        if (printToScreen) {
+            println("Number of days a vampire goes between feedings:")
+            feedDays = readln().toInt()
+            println("Percent of victims which die before turning into vampires:")
+            deathRate = readln().toDouble()
+        }
     }
 
     override fun runCalc() {
@@ -42,6 +47,6 @@ class VOMSpread() : Brains() {
 
         println("Results")
         println("-------")
-        println("  * All humans have become vampires in $days")
+        println("  * All humans have become vampires in $days days.")
     }
 }
