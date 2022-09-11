@@ -9,8 +9,8 @@ class ZOMLog() : Brains() {
     private var months: Int = 0
     private var growthRate: Double = 0.0
     private var winRate: Double = 0.0
-    private var mercyRate: Double = 0.0
     private var infectRate: Double = 0.0
+    private var mercyRate: Double = 0.0
     private var eroRate: Double = 0.0
 
     private val minimumPopulation: Double = 0.001
@@ -32,13 +32,30 @@ class ZOMLog() : Brains() {
         months = 12 * simYears
         growthRate = (1.0 + (popRate / 100.0)).pow((1.0 / 12.0)) - 1.0
         winRate = winProb / 100.0
-        mercyRate = merProb / 100.0
         infectRate = infRate / (12.0 * 100.0)
+        mercyRate = merProb / 100.0
         eroRate = erosion / (12.0 * 100.0)
     }
 
     override fun promptForInput() {
-
+        if (printToScreen) {
+            println("Initial human population in thousands:")
+            humPop = readln().toDouble()
+            println("Initial zombie population in thousands:")
+            zomPop = readln().toDouble()
+            println("Simulation time in years:")
+            months = readln().toInt()
+            println("Yearly population growth rate:")
+            growthRate = readln().toDouble()
+            println("Probability that a human beats a zombie:")
+            winRate = readln().toDouble()
+            println("Yearly infection rate:")
+            infectRate = readln().toDouble()
+            println("Probability that the infected are prevented from turning:")
+            mercyRate = readln().toDouble()
+            println("Yearly rate of zombie destruction by natural forces:")
+            eroRate = readln().toDouble()
+        }
     }
 
     override fun runCalc() {
