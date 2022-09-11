@@ -28,7 +28,7 @@ class VOMSpread() : Brains() {
         vampires = 1.0
         while (vampires < worldPopulation)
         {
-            vampires += kotlin.math.ceil(vampires * (1 - deathRate));
+            vampires += kotlin.math.ceil(vampires * (1 - deathRate))
             days += feedDays
         }
     }
