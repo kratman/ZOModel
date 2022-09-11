@@ -23,7 +23,37 @@ class VOMSpread() : Brains() {
         }
     }
 
+    private fun errorChecker() {
+        var debugOutput = "Checking for errors..."
+        if (feedDays < 0)
+        {
+            debugOutput = "$debugOutput\n  "
+            debugOutput += "Warning: Days between feeding cannot be negative."
+            feedDays = 0
+        }
+        if (deathRate > 100)
+        {
+            debugOutput = "$debugOutput\n  "
+            debugOutput += "Warning: Vampires killing more than 100% of their victims is impossible."
+            deathRate = 100.0
+        }
+        if (deathRate < 0)
+        {
+            debugOutput = "$debugOutput\n  "
+            debugOutput += "Warning: Vampires killing less than 0% of their victims is impossible."
+            deathRate = 0.0
+        }
+        if (printToScreen) {
+            println(debugOutput)
+            println("")
+        }
+    }
+
     override fun runCalc() {
+        if (printToScreen) {
+            printHeader()
+        }
+        errorChecker()
         days = 0
         vampires = 1.0
         while (vampires < worldPopulation)
@@ -38,7 +68,6 @@ class VOMSpread() : Brains() {
     }
 
     override fun printResults() {
-        printHeader()
         println("VOMSpread Settings")
         println("--------")
         println("  * Time between vampire feedings: $feedDays")
