@@ -11,7 +11,7 @@ class VOMSpread() : Brains() {
 
     constructor(feed: Int, death: Double) : this() {
         feedDays = feed
-        deathRate = death / 100.0
+        deathRate = death
     }
 
     override fun promptForInput() {
@@ -31,13 +31,13 @@ class VOMSpread() : Brains() {
             debugOutput += "Warning: Days between feeding cannot be negative."
             feedDays = 0
         }
-        if (deathRate > 100)
+        if (deathRate > 100.0)
         {
             debugOutput = "$debugOutput\n  "
             debugOutput += "Warning: Vampires killing more than 100% of their victims is impossible."
             deathRate = 100.0
         }
-        if (deathRate < 0)
+        if (deathRate < 0.0)
         {
             debugOutput = "$debugOutput\n  "
             debugOutput += "Warning: Vampires killing less than 0% of their victims is impossible."
@@ -56,22 +56,20 @@ class VOMSpread() : Brains() {
         errorChecker()
         days = 0
         vampires = 1.0
-        while (vampires < worldPopulation)
+        var currentPopulation = worldPopulation
+        while (currentPopulation > 0)
         {
-            vampires += kotlin.math.ceil(vampires * (1 - deathRate))
-            days += feedDays
+            vampires += kotlin.math.ceil(vampires * (1.0 - (deathRate / 100.0)))
+            currentPopulation -= kotlin.math.ceil(vampires)
+            days += kotlin.math.max(feedDays, 1)
         }
-    }
-
-    private fun getDeathRate(): Double {
-        return (100.0 * deathRate)
     }
 
     override fun printResults() {
         println("VOMSpread Settings")
         println("--------")
         println("  * Time between vampire feedings: $feedDays")
-        println("  * Percent of victims killed: " + getDeathRate() +"%")
+        println("  * Percent of victims killed: $deathRate%")
         println("")
 
         println("Results")

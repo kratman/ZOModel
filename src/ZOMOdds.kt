@@ -23,25 +23,25 @@ class ZOMOdds() : Brains() {
 
     private fun errorChecker() {
         var debugOutput = "Checking for errors..."
-        if (zomPer > 100)
+        if (zomPer > 100.0)
         {
             debugOutput = "$debugOutput\n  "
             debugOutput += "Warning: Population cannot be more than 100% zombies."
             zomPer = 100.0
         }
-        if (zomPer < 0)
+        if (zomPer < 0.0)
         {
             debugOutput = "$debugOutput\n  "
             debugOutput += "Warning: Population cannot be less than 0% zombies."
             zomPer = 0.0
         }
-        if (fightPer > 100)
+        if (fightPer > 100.0)
         {
             debugOutput = "$debugOutput\n  "
             debugOutput += "Warning: More than 100% of the humans fighting is impossible."
             fightPer = 100.0
         }
-        if (fightPer < 0)
+        if (fightPer < 0.0)
         {
             debugOutput = "$debugOutput\n  "
             debugOutput += "Warning: Less than 0% of the humans fighting is impossible."
